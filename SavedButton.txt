@@ -1,0 +1,2 @@
+액션 SceneNumber : 3_background QuestionNumber : 74 Question : 좋아하는 영화 장르는 무엇인가요? AudioFileName : 3_background#74#movie1
+내장산 SceneNumber : 3_background QuestionNumber : 3 Question : 단풍이 아름답게 물드는 산은 어느 산인가요? AudioFileName : 3_background#3#fall_flower1

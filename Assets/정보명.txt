@@ -1,0 +1,14 @@
+scene name,num,step1,step2,step3,text(질문),1,2,3,4,concat,audio file name
+3_background,1,TV1,TV,선호,즐겨보는 TV프로그램은 어떤 것인가요?,뉴스,교양,드라마,스포츠,즐겨보는 TV프로그램은 어떤 것인가요?#뉴스#교양#드라마#스포츠,3_background#1#TV1.mp3
+
+
+    public void SetAnswers()
+    {
+        for(int i=0; i<options.Length; i++)
+        {
+            // options[i].transform.GetChild(0).GetComponent<Text>().text = QnAList[currentQuestion].Answers[i];
+            options[i].text = dataList[currentQuestion].Answers[i];
+        }
+        Debug.Log("SceneNumber : " + dataList[currentQuestion].SceneNumber + " QuestionNumber : " + dataList[currentQuestion].QuestionNumber +
+        " Question : " + dataList[currentQuestion].Question + " AudioFileName : " + dataList[currentQuestion].AudioFileName);
+    }
