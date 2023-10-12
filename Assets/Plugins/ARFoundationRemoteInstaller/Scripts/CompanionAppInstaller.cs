@@ -24,7 +24,7 @@ namespace ARFoundationRemote.Editor {
         int IOrderedCallback.callbackOrder => 0;
         
         void IPreprocessBuildWithReport.OnPreprocessBuild(BuildReport report) {
-            log($"CompanionAppInstaller IPreprocessBuildWithReport.OnPreprocessBuild, isBuildingCompanionApp(report): {isBuildingCompanionApp(report)}, defines: {PlayerSettings.GetScriptingDefineSymbolsForGroup(activeBuildTargetGroup)}, isCloudBuild: {isCloudBuild}");
+            log($"CompanionAppInstaller IPreprocessBuildWithReport.OnPreprocessBuild, isBuildingCompanionApp(report): {isBuildingCompanionApp(report)}, defines: {scriptingDefineSymbols}, isCloudBuild: {isCloudBuild}");
             if (isCloudBuild && isARCompanionDefineSet) {
                 var settings = new InstallerSettings {
                     modifyAppId = false,
@@ -73,33 +73,64 @@ namespace ARFoundationRemote.Editor {
         }
 
         static void toggleDefine(string define, bool enable) {
-            var buildTargetGroup = activeBuildTargetGroup;
             if (enable) {
                 if (isDefineSet(define)) {
                     return;
                 }
 
-                var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
+                var defines = scriptingDefineSymbols;
                 setDefines($"{defines};{define}");
             } else {
                 if (!isDefineSet(define)) {
                     return;
                 }
 
-                var defines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup).Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
+                var defines = scriptingDefineSymbols.Split(new[] {';'}, StringSplitOptions.RemoveEmptyEntries);
                 setDefines(string.Join(";", defines.Where(d => d.Trim() != define).ToArray()));
             }
             
             void setDefines(string defines) {
                 log($"set defines: {defines}");
-                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, defines);
+                scriptingDefineSymbols = defines;
             }
         }
 
-        internal static BuildTargetGroup activeBuildTargetGroup => BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
+        static string scriptingDefineSymbols {
+            get {
+                #if UNITY_2023_1_OR_NEWER
+                return PlayerSettings.GetScriptingDefineSymbols(activeBuildTargetGroup);
+                #else
+                return PlayerSettings.GetScriptingDefineSymbolsForGroup(activeBuildTargetGroup);
+                #endif
+            }
+            set {
+                #if UNITY_2023_1_OR_NEWER
+                PlayerSettings.SetScriptingDefineSymbols(activeBuildTargetGroup, value);
+                #else
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(activeBuildTargetGroup, value);
+                #endif
+            }
+        }
+
+        static
+            #if UNITY_2023_1_OR_NEWER
+            NamedBuildTarget
+            #else
+            BuildTargetGroup
+            #endif
+            activeBuildTargetGroup {
+            get {
+                var buildTargetGroup = BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget);
+                #if UNITY_2023_1_OR_NEWER
+                return NamedBuildTarget.FromBuildTargetGroup(buildTargetGroup);
+                #else
+                return buildTargetGroup;
+                #endif
+            }
+        }
 
         static bool isDefineSet(string define) {
-            return PlayerSettings.GetScriptingDefineSymbolsForGroup(activeBuildTargetGroup).Contains(define);
+            return scriptingDefineSymbols.Contains(define);
         }
 
         static bool isCloudBuild {
@@ -210,7 +241,7 @@ namespace ARFoundationRemote.Editor {
             if (!EditorBuildSettings.TryGetConfigObject(UnityEngine.XR.Management.XRGeneralSettings.k_SettingsKey, out UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget buildTargetSettings)) {
                 return false;
             }
-            var settings = buildTargetSettings.SettingsForBuildTarget(activeBuildTargetGroup);
+            var settings = buildTargetSettings.SettingsForBuildTarget(BuildPipeline.GetBuildTargetGroup(EditorUserBuildSettings.activeBuildTarget));
             if (settings == null) {
                 return false;
             }
