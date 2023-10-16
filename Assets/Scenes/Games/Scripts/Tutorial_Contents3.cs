@@ -124,14 +124,14 @@ public class Tutorial_Contents3 : MonoBehaviour
         else if (cnt_next_bath_bt_clicked == 3)
         {
             string answer_c = answer_seq_color[1].Split("_")[1];
-            arrow_3d.transform.position = bottle_3d[color_to_num[answer_c] - 1].transform.position + 0.1f * Vector3.up;
+            arrow_3d.transform.position = bottle_3d[color_to_num[answer_c] - 1].transform.position + 0.2f * Vector3.up;
             tutorial_msg.text = "정답이에요!\n두 번째 샴푸병을 골라주세요!";
             cnt_next_bath_bt_clicked++;
         }
         else if (cnt_next_bath_bt_clicked == 4)
         {
             string answer_c = answer_seq_color[2].Split("_")[1];
-            arrow_3d.transform.position = bottle_3d[color_to_num[answer_c] - 1].transform.position + 0.1f * Vector3.up;
+            arrow_3d.transform.position = bottle_3d[color_to_num[answer_c] - 1].transform.position + 0.2f * Vector3.up;
             tutorial_msg.text = "정답이에요!\n마지막 샴푸병을 골라주세요!";
             cnt_next_bath_bt_clicked++;
 
@@ -270,7 +270,7 @@ public class Tutorial_Contents3 : MonoBehaviour
         }
 
         string answer_c = answer_seq_color[0].Split("_")[1];
-        arrow_3d.transform.position = bottle_3d[color_to_num[answer_c] - 1].transform.position + 0.1f * Vector3.up;
+        arrow_3d.transform.position = bottle_3d[color_to_num[answer_c] - 1].transform.position + 0.2f * Vector3.up;
         //세 개의 포인트를 선택한다
         // 세개의 포인트 선정 기: y값(높낮이)가 (-0.5, 0)인 포인트들로만 선택한다
         // 화면상의 여러 부분에 ray를 쏘아서 포인트들을 막 저장한다 -> game_mode script의 extract_point와 비슷하게 구현하면 될 듯
@@ -283,7 +283,7 @@ public class Tutorial_Contents3 : MonoBehaviour
         if (time_remain > 0) return;
 
         //GameObject clickedobj = EventSystem.current.currentSelectedGameObject;
-        GameObject clickedobj = GameObject.Find(Name);
+        GameObject clickedobj = GameObject.Find(Name + "_prefab");
         string clicked_bt_name = Name.Split("_")[1];
 
         if (level == 1)

@@ -3358,7 +3358,6 @@ MonoBehaviour:
   start_game_bt_no: {fileID: 75861528}
   Arrow_L: {fileID: 837935624}
   Arrow_R: {fileID: 1854704944}
-  guide_image: {fileID: 2041987808}
   guide_img_set:
   - {fileID: 0}
   - {fileID: 21300000, guid: 1425e1754bdad4e239ce8874a2e691ba, type: 3}
@@ -3370,9 +3369,11 @@ MonoBehaviour:
   min_y: 0
   timer_radial_image: {fileID: 1083389863}
   gamming_timer_radial_image: {fileID: 895077583}
+  gamming_timer_remain: {fileID: 0}
   Panel_text: {fileID: 162813043}
   item_meal: {fileID: 373032744}
   time_text: {fileID: 2004320099}
+  time_text_2: {fileID: 0}
   item_text: {fileID: 1379491825}
   Coin_cnt: {fileID: 0}
 --- !u!114 &527273172
@@ -4069,8 +4070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 462}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -763, y: 414}
+  m_SizeDelta: {x: 141.3439, y: 141.3439}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895077583
 MonoBehaviour:
@@ -4776,8 +4777,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC15\uC544\uC9C0\uB97C \uBD88\uB7EC\uC624\uB824\uBA74\n\uC544\uB798\uC758
-    \uC6D0\uC744 \uB20C\uB7EC\uBCF4\uC138\uC694!\n"
+  m_text: "\uAC15\uC544\uC9C0\uB97C \uBD88\uB7EC\uC624\uB824\uBA74\n\uC544\uB798
+    \uC6C0\uC9C1\uC774\uB294 \uC0C1\uC790\uB97C \uB20C\uB7EC\uBCF4\uC138\uC694!\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e146a2563586740c8ac5f492ecc03bf3, type: 2}
   m_sharedMaterial: {fileID: 9113395591854111280, guid: e146a2563586740c8ac5f492ecc03bf3,
@@ -6588,9 +6589,10 @@ MonoBehaviour:
   guide_pet: {fileID: 1671148416}
   guide_circle: {fileID: 1878934830}
   Load_pet_bt: {fileID: 1044448924}
-  blink_circle: {fileID: 1175510627}
+  blink_circle: {fileID: 373032744}
   energy: {fileID: 0}
   fatigue: {fileID: 0}
+  cleanliness: {fileID: 0}
   intimity: {fileID: 0}
   Coin_cnt: {fileID: 0}
   speechbubble: {fileID: 1292680850}
@@ -6652,7 +6654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

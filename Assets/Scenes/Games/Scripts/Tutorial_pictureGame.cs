@@ -35,7 +35,7 @@ namespace UnityEngine.XR.ARFoundation
         public GameObject start_game_bt_no;
         public GameObject Arrow_L;
         public GameObject Arrow_R;
-        public Image guide_image;
+        //public Image guide_image;
         public List<Sprite> guide_img_set = new List<Sprite>();
         public bool flag_game_started;
 
@@ -186,7 +186,7 @@ namespace UnityEngine.XR.ARFoundation
 
             else if (cnt_next_bt_clicked == 4)
             {
-                tutorial_msg.text = "강아지가 아이템 근처로 움직이기 시작하네요!";
+                tutorial_msg.text = "강아지를 따라 이동해볼까요?";
                 Invoke("picture_next_bt_clicked", 7f);
                 start_game();
                 cnt_next_bt_clicked++;
@@ -194,7 +194,7 @@ namespace UnityEngine.XR.ARFoundation
 
             else if (cnt_next_bt_clicked == 5)
             {
-                tutorial_msg.text = "아이템을 얻기 위해 사진을 찍어볼까요?";
+                tutorial_msg.text = "강아지가 보이도록 사진을 찍어볼까요?";
                 tutorial_bt.SetActive(true);
                 cnt_next_bt_clicked++;
             }
@@ -202,49 +202,40 @@ namespace UnityEngine.XR.ARFoundation
             else if (cnt_next_bt_clicked == 6)
             {
                 tutorial_bt.SetActive(false);
-                tutorial_msg.text = "오른쪽에 보이는 사진처럼 강아지를 찍을수 있도록 이동해 볼까요?";
-                Invoke("picture_next_bt_clicked", 10f);
+                tutorial_msg.text = "준비가 되면 자동으로 사진이 찍혀요!";
+                Invoke("check_pos", 5f);
+                //Invoke("picture_next_bt_clicked", 10f);
                 cnt_next_bt_clicked++;
+                Debug.Log("check1");
             }
 
             else if (cnt_next_bt_clicked == 7)
             {
                 tutorial_bt.SetActive(true);
-                tutorial_msg.text = "준비가 되면 자동으로 사진이 찍혀요!";
+                tutorial_msg.text = "다시 한 번 강아지를 따라가 볼까요?";
                 cnt_next_bt_clicked++;
+                Debug.Log("check2");
             }
 
             else if (cnt_next_bt_clicked == 8)
             {
-                tutorial_msg.text = "오른쪽 사진처럼 강아지를 찍지 않으면 다시 찍어야 해요!";
+                tutorial_bt.SetActive(false);
+                tutorial_msg.text = "준비가 되면 자동으로 사진이 찍혀요!";
+                Invoke("check_pos", 5f);
                 //Invoke("picture_next_bt_clicked", 10f);
                 cnt_next_bt_clicked++;
+                Debug.Log("check3");
             }
 
             else if (cnt_next_bt_clicked == 9)
             {
-                tutorial_bt.SetActive(false);
-                tutorial_msg.text = "다시 한번 사진을 찍어볼까요?";
-                Invoke("picture_next_bt_clicked", 10f);
-                cnt_next_bt_clicked++;
-            }
-
-            else if (cnt_next_bt_clicked == 10)
-            {
-                tutorial_bt.SetActive(false);
-                tutorial_msg.text = "사진 찍기에 성공했어요! 다른 각도에서도 찍어볼까요?";
-                check_pos();
-                cnt_next_bt_clicked++;
-            }
-
-            else if (cnt_next_bt_clicked == 11)
-            {
-                tutorial_msg.text = "잘 하셨어요! 10초 후에 이전 화면으로 돌아갑니다";
-                check_pos();
+                tutorial_msg.text = "잘 하셨어요! 강아지와 조금 더 친해진 것 같지 않나요?";
+                //check_pos();
                 Invoke("load_tutorial_page", 9f);
                 cnt_next_bt_clicked = 0;
                 flag_game_mode = false;
             }
+
 
         }
 
@@ -392,7 +383,7 @@ namespace UnityEngine.XR.ARFoundation
                 //Gb_points.Add(origin);
 
             }
-            System.Range range = 0..4;
+            System.Range range = 0..5;
             var shuffled_idx = MakeRandomNumbers(9)[range];
 
             for (int i = 0; i < shuffled_idx.Length; i++)
@@ -505,102 +496,82 @@ namespace UnityEngine.XR.ARFoundation
             //if (!go_to_below) return;
 
             //if (time_remaining > 0)
+            if(time_remaining > 0)
             {
-                if(time_remaining > 0)
-                {
-                    time_remaining -= Time.deltaTime;
-                }
-                else
-                {
-                    Debug.Log("뷁");
-                }
-                gamming_timer_radial_image.fillAmount = time_remaining / 10f;
-
-                //check_pos(); //올바른 포즈로 촬영했는지 확인해주는 함수
+                time_remaining -= Time.deltaTime;
             }
+            //gamming_timer_radial_image.fillAmount = time_remaining / 10f;
+
+            //check_pos(); //올바른 포즈로 촬영했는지 확인해주는 함수
             if (!check_pos_clicked) return;
             check_pos_clicked = false;
             //else //시간이 다 경과했을 경우.
                  //CASE1: 실제 시간이 다 경과되어서 넘어온 경우.(is_check_pos_true==false)
                  //CASE2: check_pos함수에 의해 넘어온 경우.(is_check_pos_true==true, 정답일 시 check_pos에서 time_remaining을 강제로 0으로 만)
+            
+            if (is_check_pos_true)//사진 찍기 성공한 경우
             {
-                if (is_check_pos_true)//사진 찍기 성공한 경우
+                Debug.Log("game_mode_picture bt clicked 실행");
+                Invoke("picture_next_bt_clicked", 7f);
+                is_check_pos_true = false;
+                //if (game_local_success < 2)
+                //{
+
+                //}
+                //else
                 {
-                    //picture_next_bt_clicked();
-                    Invoke("picture_next_bt_clicked", 7f);
-                    game_local_success += 1;
-                    is_check_pos_true = false;
-                    if (game_local_success < 2)
+                    //뭔가 리액션 관련된 함수나 애니메이션, 혹은 보상주기
+                    //global success 를 1올려주는 타이밍에 Pet_move_flag도 True로 바꿔준다.
+
+                    petctrl_script.set_text_speechBubble("사진을 찍었어요!");
+                    Gb_points[game_global_success].SetActive(false); //global succes가 0이 되면 Gb_points도 clear 해준다.
+                    game_global_success += 1;
+                    if (game_global_success == 5) Gb_points.Clear();
+                    //guide_image.sprite = guide_img_set[0]; //reset 이미지로
+                    anim = petctrl_script.spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+                    var rand_idx = MakeRandomNumbers(4)[0];
+                    if (rand_idx == 0)
                     {
-                        if (game_local_success == 1)
-                        {
-                            guide_image.sprite = guide_img_set[2];
-                        }
-                        //else if (game_local_success == 2)
-                        //{
-                        //    guide_image.sprite = guide_img_set[3];
-                        //}
-                        //else if (game_local_success == 3)
-                        //{
-                        //    guide_image.sprite = guide_img_set[4];
-                        //}
-
+                        anim.Play("277_Skill_Dance");
                     }
-                    else
+                    else if (rand_idx == 1)
                     {
-                        //뭔가 리액션 관련된 함수나 애니메이션, 혹은 보상주기
-                        //global success 를 1올려주는 타이밍에 Pet_move_flag도 True로 바꿔준다.
-
-                        petctrl_script.set_text_speechBubble("잘 맞추셨네요!");
-                        Gb_points[game_global_success].SetActive(false); //global succes가 0이 되면 Gb_points도 clear 해준다.
-                        game_local_success = 0;
-                        game_global_success += 1;
-                        if (game_global_success == 4) Gb_points.Clear();
-                        guide_image.sprite = guide_img_set[0]; //reset 이미지로
-                        anim = petctrl_script.spawnedObject.transform.GetChild(0).GetComponent<Animator>();
-                        var rand_idx = MakeRandomNumbers(4)[0];
-                        if (rand_idx == 0)
-                        {
-                            anim.Play("277_Skill_Dance");
-                        }
-                        else if (rand_idx == 1)
-                        {
-                            anim.Play("067_Idle_Blend_LieOnBack");
-                        }
-                        else if (rand_idx == 2)
-                        {
-                            anim.Play("302_Stroll");
-                        }
-                        else if (rand_idx == 3)
-                        {
-                            anim.Play("226_Play_Left_Spin");
-                        }
-                        do_nothing = true;
-                        //float loop_escape_time = 100.0f;
-                        //while(true)
-                        //{
-                        //    loop_escape_time -= Time.deltaTime;
-                        //    Debug.Log(loop_escape_time);
-                        //    if (loop_escape_time < 0) break;
-                        //}
-                        Invoke("set_pet_move_flag_true", 5f);// 5초 후 다음 Target으로 이동
-                        item_text.text = "찾은 개수: " + game_global_success.ToString() + "개";
+                        anim.Play("067_Idle_Blend_LieOnBack");
                     }
-                }
-                else //사진 찍기 실패한 경우
-                {
-                    time_remaining = 10.0f;
-                }
-
-
-                //gamming_take_picture_bt.SetActive(true);
-                //gamming_shoot_bt.SetActive(false);
-                //if(time_remaining < 0)
-                {
-                    gamming_timer_radial_image.fillAmount = 1f;
-                    time_remaining = 10.0f;
+                    else if (rand_idx == 2)
+                    {
+                        anim.Play("302_Stroll");
+                    }
+                    else if (rand_idx == 3)
+                    {
+                        anim.Play("226_Play_Left_Spin");
+                    }
+                    do_nothing = true;
+                    //float loop_escape_time = 100.0f;
+                    //while(true)
+                    //{
+                    //    loop_escape_time -= Time.deltaTime;
+                    //    Debug.Log(loop_escape_time);
+                    //    if (loop_escape_time < 0) break;
+                    //}
+                    Invoke("set_pet_move_flag_true", 7f);// 5초 후 다음 Target으로 이동
+                    item_text.text = "찾은 개수: " + game_global_success.ToString() + "개";
                 }
             }
+            //else //사진 찍기 실패한 경우
+            //{
+            //    time_remaining = 10.0f;
+            //}
+
+
+            //gamming_take_picture_bt.SetActive(true);
+            //gamming_shoot_bt.SetActive(false);
+            //if(time_remaining < 0)
+                
+                //gamming_timer_radial_image.fillAmount = 1f;
+            //time_remaining = 10.0f;
+                
+            
 
             //if (EventSystems.EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             //    return;
@@ -629,64 +600,40 @@ namespace UnityEngine.XR.ARFoundation
         private void set_pet_move_flag_true()
         {
             do_nothing = false;
-            if (game_global_success < 4)
+            if (game_global_success < 5)
             {
                 set_to_kinematic();
                 pet_move_flag = true;
             }
-            else
-            {
-                Debug.Log("게임 종료!");
-                set_to_gravity();
-                game_global_success = 0;
-                game_local_success = 0;
-                anim = petctrl_script.spawnedObject.transform.GetChild(0).GetComponent<Animator>();
-                anim.Play("Idle");
-                flag_game_started = false;
-                flag_game_mode = false;
-                gamming_panel.SetActive(false);
-                time_text.text = "게임을 다시 한 번 해볼까요?";
-                start_game_bt_no.SetActive(true);
-                start_game_bt.SetActive(true);
-            }
+            //else
+            //{
+            //    Debug.Log("게임 종료!");
+            //    set_to_gravity();
+            //    game_global_success = 0;
+            //    game_local_success = 0;
+            //    anim = petctrl_script.spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+            //    anim.Play("Idle");
+            //    flag_game_started = false;
+            //    flag_game_mode = false;
+            //    gamming_panel.SetActive(false);
+            //    time_text.text = "게임을 다시 한 번 해볼까요?";
+            //    start_game_bt_no.SetActive(true);
+            //    start_game_bt.SetActive(true);
+            //}
         }
 
         public void check_pos()
         {
-            //Debug.Log(petctrl_script.spawnedObject.transform.GetChild(0).transform.eulerAngles
-            //    + "\t" + Camera.main.transform.eulerAngles);
-            float range_rot = 60;
-            if (petctrl_script.spawnedObject.transform.GetChild(0).transform.eulerAngles.y - range_rot / 2 < 0)
-            {
-                Debug.Log("case 1");
-                if (Camera.main.transform.eulerAngles.y <
-                   petctrl_script.spawnedObject.transform.GetChild(0).transform.eulerAngles.y + range_rot / 2
-                   ||
-                    (Camera.main.transform.eulerAngles.y >
-                    360f - range_rot / 2 + petctrl_script.spawnedObject.transform.GetChild(0).transform.eulerAngles.y)
-                    && Camera.main.transform.eulerAngles.y < 360
-                    )
-                {
 
-                }
-            }
-            else if (petctrl_script.spawnedObject.transform.GetChild(0).transform.eulerAngles.y + range_rot / 2 > 360)
-            {
-                //Debug.Log("case2");
-            }
-            else
-            {
-                //Debug.Log("case 3");
-            }
 
             //if (time_remaining < 7) //현재는 7초 밑으로 떨어지기만 하면 성공으로 취급
-            {
-                AudioSource audio = GameObject.Find("Audio player_cam").GetComponent<AudioSource>();
-                audio.Play();
-                Debug.Log("사진 찍기 성공!");
-                is_check_pos_true = true;
-                time_remaining = 0;
-            }
+            
+            AudioSource audio = GameObject.Find("Audio player_cam").GetComponent<AudioSource>();
+            audio.Play();
+            Debug.Log("사진 찍기 성공!");
+            is_check_pos_true = true;
+            time_remaining = 0;
+            
 
             check_pos_clicked = true;
             return;
@@ -737,7 +684,7 @@ namespace UnityEngine.XR.ARFoundation
                     Debug.Log("Idle animation excute___gameMode");
                     anim = petctrl_script.spawnedObject.transform.GetChild(0).GetComponent<Animator>();
                     anim.Play("Idle");
-                    guide_image.sprite = guide_img_set[1];
+                    //guide_image.sprite = guide_img_set[1];
                 }
 
             }
@@ -789,7 +736,7 @@ namespace UnityEngine.XR.ARFoundation
             start_game_bt.SetActive(false);
             start_game_bt_no.SetActive(false);
 
-            gamming_panel.SetActive(true);
+            //gamming_panel.SetActive(true);
             gamming_take_picture_bt.SetActive(false);
             gamming_shoot_bt.SetActive(false);
             //AudioSource audio = GameObject.Find("Audio player").GetComponent<AudioSource>();

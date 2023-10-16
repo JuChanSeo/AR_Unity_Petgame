@@ -15,6 +15,7 @@ public class Tutorial_Contents1 : MonoBehaviour
     int cnt_moving_average;
     public GameObject net;
     Petctrl petctrl_script;
+    bgm_player bgm_player_;
     RaycastHit hit;
     Vector2 Center_device;
     int cnt_corr;
@@ -26,10 +27,11 @@ public class Tutorial_Contents1 : MonoBehaviour
     //bgm_player bgm_player_;
     //Player_statu player;
     int min_statu;
-    int cnt_next_bt_clicked;
 
+   
     int level;
 
+    int cnt_next_bt_clicked;
     public GameObject tutorial_panel;
     public GameObject tutorial_bt;
     public TMP_Text tutorial_msg;
@@ -42,6 +44,7 @@ public class Tutorial_Contents1 : MonoBehaviour
         bt_set.SetActive(false);
         bt_picture.SetActive(false);
         petctrl_script = GameObject.Find("Scripts_tutorial").GetComponent<Petctrl>();
+        bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         //level = player.Level_hungry;
         level = 1;
         time_remain = 0;
@@ -77,96 +80,116 @@ public class Tutorial_Contents1 : MonoBehaviour
         //        time_remain_text.text = "";
         //    }
         //}
-
-
-        if (c1_flag)
+        if (c1_flag && Input.touchCount > 0)
         {
-            var cur_angle = Camera.main.transform.eulerAngles.x;
-            var catching_obj_pos = Camera.main.ScreenToWorldPoint(new Vector3(Center_device.x, Center_device.y, 0.2f));
-            net.transform.position = catching_obj_pos;
-
-            if (cur_angle > 0 && cur_angle < 90)
+            //Debug.Log("logging");
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
             {
-                float cur_speed = Mathf.Abs(cur_angle - prev_angle_frame);
-                float filtered_speed = filter_speed(cur_speed);
+                //Debug.Log("asdf");
+                var ray = Camera.main.ScreenPointToRay(touch.position);
+                Physics.Raycast(ray, out var hit, float.PositiveInfinity);
 
-                //Debug.Log(Camera.main.transform.eulerAngles.x + "\t" + filtered_speed);
-                if (filtered_speed < 2.5f)
+                if (hit.transform.parent.transform.name == "foods")
                 {
-                    //Debug.Log("가마니");
-                    return;
+                    //Debug.Log(hit.transform.name);
+                    check_the_answer(hit.transform.name);
                 }
-
-                if (cur_angle - prev_angle < 0) // 들어 올릴 때
+                else
                 {
-                    //net.transform.eulerAngles = new Vector3(net.transform.eulerAngles.x, net.transform.eulerAngles.y, 45f);
-                    var ray = Camera.main.ScreenPointToRay(Center_device);
-                    Physics.Raycast(ray, out hit, float.PositiveInfinity);
-                    if (hit.transform.CompareTag("food"))
-                    {
-                        Debug.Log(hit.transform.name);
-                        if (hit.transform.name == food_selected[cnt_corr].transform.name)
-                        {
-                            Invoke("clear_text", 2f);
-                            food_selected[cnt_corr].SetActive(false);
-                            cnt_corr += 1;
-
-                            if (level == 1)
-                            {
-                                if (cnt_corr == 3)
-                                {
-                                    //re-initialize
-                                    petctrl_script.heart_effect_true();
-                                    petctrl_script.pet_reaction_hungry_true();
-                                    choose_and_show_random_food();
-                                    net.SetActive(false);
-                                    hungry_next_bt_clicked();
-                                }
-                                else
-                                {
-                                    hungry_next_bt_clicked();
-                                }
-                            }
-                         }
-
-                        else//다른 음식을 고른 경우 
-                        {
-                            //time_remain_text.text = "다른 음식을 골라주세요";
-                            //Invoke("clear_text", 2f);
-                            petctrl_script.pet_reaction_false();
-                        }
-                    }
-
 
                 }
-                else// 
-                {
-                    net.transform.eulerAngles = new Vector3(net.transform.eulerAngles.x, net.transform.eulerAngles.y, 15f);
-                }
-
-                prev_angle_frame = cur_angle;
-
-                if (Mathf.Abs(cur_angle - prev_angle) > 5f)
-                {
-                    prev_angle = cur_angle;
-                }
-
             }
-            //if (cur_acce - prev_acce < 0)
-            //{
-            //    tilting_fw = true;
-            //    Debug.Log("숙이고 있는중");
-            //}
-            //else
-            //{
-            //    tilting_fw = false;
-            //    Debug.Log("숙이기 반대");
-            //}
-
-            //if (Mathf.Abs(cur_acce - prev_acce) < 0.05f)
-            //    prev_acce = cur_acce;
-            //prev_acce_frame = cur_acce;
         }
+
+        //if (c1_flag)
+        //{
+        //    var cur_angle = Camera.main.transform.eulerAngles.x;
+        //    var catching_obj_pos = Camera.main.ScreenToWorldPoint(new Vector3(Center_device.x, Center_device.y, 0.2f));
+        //    net.transform.position = catching_obj_pos;
+
+        //    if (cur_angle > 0 && cur_angle < 90)
+        //    {
+        //        float cur_speed = Mathf.Abs(cur_angle - prev_angle_frame);
+        //        float filtered_speed = filter_speed(cur_speed);
+
+        //        //Debug.Log(Camera.main.transform.eulerAngles.x + "\t" + filtered_speed);
+        //        if (filtered_speed < 2.5f)
+        //        {
+        //            //Debug.Log("가마니");
+        //            return;
+        //        }
+
+        //        if (cur_angle - prev_angle < 0) // 들어 올릴 때
+        //        {
+        //            //net.transform.eulerAngles = new Vector3(net.transform.eulerAngles.x, net.transform.eulerAngles.y, 45f);
+        //            var ray = Camera.main.ScreenPointToRay(Center_device);
+        //            Physics.Raycast(ray, out hit, float.PositiveInfinity);
+        //            if (hit.transform.CompareTag("food"))
+        //            {
+        //                Debug.Log(hit.transform.name);
+        //                if (hit.transform.name == food_selected[cnt_corr].transform.name)
+        //                {
+        //                    Invoke("clear_text", 2f);
+        //                    food_selected[cnt_corr].SetActive(false);
+        //                    cnt_corr += 1;
+
+        //                    if (level == 1)
+        //                    {
+        //                        if (cnt_corr == 3)
+        //                        {
+        //                            //re-initialize
+        //                            petctrl_script.heart_effect_true();
+        //                            petctrl_script.pet_reaction_hungry_true();
+        //                            choose_and_show_random_food();
+        //                            net.SetActive(false);
+        //                            hungry_next_bt_clicked();
+        //                        }
+        //                        else
+        //                        {
+        //                            hungry_next_bt_clicked();
+        //                        }
+        //                    }
+        //                 }
+
+        //                else//다른 음식을 고른 경우 
+        //                {
+        //                    //time_remain_text.text = "다른 음식을 골라주세요";
+        //                    //Invoke("clear_text", 2f);
+        //                    petctrl_script.pet_reaction_false();
+        //                }
+        //            }
+
+
+        //        }
+        //        else// 
+        //        {
+        //            net.transform.eulerAngles = new Vector3(net.transform.eulerAngles.x, net.transform.eulerAngles.y, 15f);
+        //        }
+
+        //        prev_angle_frame = cur_angle;
+
+        //        if (Mathf.Abs(cur_angle - prev_angle) > 5f)
+        //        {
+        //            prev_angle = cur_angle;
+        //        }
+
+        //    }
+        //    //if (cur_acce - prev_acce < 0)
+        //    //{
+        //    //    tilting_fw = true;
+        //    //    Debug.Log("숙이고 있는중");
+        //    //}
+        //    //else
+        //    //{
+        //    //    tilting_fw = false;
+        //    //    Debug.Log("숙이기 반대");
+        //    //}
+
+        //    //if (Mathf.Abs(cur_acce - prev_acce) < 0.05f)
+        //    //    prev_acce = cur_acce;
+        //    //prev_acce_frame = cur_acce;
+        //}
 
     }
 
@@ -192,8 +215,9 @@ public class Tutorial_Contents1 : MonoBehaviour
         else if (cnt_next_bt_clicked == 2)
         {
             c1_flag = true;
-            tutorial_msg.text = "음식을 순서대로 그릇에 담아주세요!\n그릇을 움직여주면 음식을 담을 수 있어요!";
+            tutorial_msg.text = "음식을 순서대로 골라볼까요?\n음식을 선택해서 음식을 고를 수 있어요!";
             arrow_3d.SetActive(true);
+            tutorial_bt.SetActive(false);
             change_to_shuffled();
             cnt_next_bt_clicked++;
         }
@@ -215,7 +239,6 @@ public class Tutorial_Contents1 : MonoBehaviour
         {
             arrow_3d.SetActive(false);
             tutorial_msg.text = "모두 다 잘 고르셨네요! 다음 게임도 배워볼까요?";
-            tutorial_bt.SetActive(false);
             Invoke("re_init", 10f);
             cnt_next_bt_clicked = 0;
         }
@@ -317,6 +340,7 @@ public class Tutorial_Contents1 : MonoBehaviour
         food_selected.Clear();
         c1_flag = false;
         cnt_corr = 0;
+        clear_text();
 
         for (int i = 0; i < foods.Count; i++)
         {
@@ -325,6 +349,47 @@ public class Tutorial_Contents1 : MonoBehaviour
 
         //bt_set.transform.GetChild(0).transform.position = bt_set.transform.GetChild(min_statu + 1).transform.position
         //                                                + Vector3.left * 100;
+    }
+
+    public void check_the_answer(string Name)
+    {
+        if (time_remain > 0) return;
+
+        //GameObject clickedobj = EventSystem.current.currentSelectedGameObject;
+        GameObject clickedobj = GameObject.Find(Name);
+        string clicked_foods_name = Name;
+
+        if (level == 1)
+        {
+            string answer_food_name = food_selected[cnt_corr].name;
+            if (clicked_foods_name == answer_food_name)
+            {
+                cnt_corr += 1;
+                clickedobj.SetActive(false);
+                hungry_next_bt_clicked();
+
+                if (cnt_corr == 3)
+                {
+                    time_remain_text.text = "축하드립니다 모두 맞추셨습니다!";
+                    bgm_player_.getitem_sound_excute();
+                    petctrl_script.set_text_speechBubble("음식을 모두\n다 골랐습니다!");
+                    petctrl_script.pet_reaction_hungry_true();
+                    choose_and_show_random_food();
+                    Invoke("re_init", 10f);
+                }
+                else
+                {
+                    bgm_player_.success_sound_excute();
+                }
+            }
+            else
+            {
+                time_remain_text.text = "다시 골라볼까요?";
+                petctrl_script.pet_reaction_false();
+                bgm_player_.fail_sound_excute();
+                Invoke("clear_text", 2f);
+            }
+        }
     }
 
     public static int[] MakeRandomNumbers(int maxValue, int randomSeed = 0)
