@@ -163,9 +163,9 @@ public class Inventory : MonoBehaviour
 
     public void show_SalePopup()
     {
-        //자물쇠가 걸려 있는 인벤토리를 선택할시.
         GameObject clickedObj = EventSystem.current.currentSelectedGameObject;
-        if (clickedObj.transform.GetChild(1).gameObject.activeSelf == true) //구매 이전
+        //자물쇠가 걸려 있는 인벤토리를 선택할시.
+        if (clickedObj.transform.GetChild(1).gameObject.activeSelf == true)
         {
             curr_clicked_item = clickedObj;
             sale_popup.SetActive(true);
