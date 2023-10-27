@@ -85,8 +85,10 @@ public class Petctrl : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		if(SceneManager.GetActiveScene().name != "Tutorial" && SceneManager.GetActiveScene().name != "Tutorial_Game3"
-			&& SceneManager.GetActiveScene().name != "Game3")
+		if(SceneManager.GetActiveScene().name != "Tutorial"
+			&& SceneManager.GetActiveScene().name != "Tutorial_Game3"
+			&& SceneManager.GetActiveScene().name != "Game3"
+			&& SceneManager.GetActiveScene().name == "Chapter5")
         {
 			Coin_cnt.text = "X " + player_statu_script.Coin.ToString();
 			energy.value = player_statu_script.energy;
@@ -430,7 +432,6 @@ public class Petctrl : MonoBehaviour
 		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
 		anim.Play("Idle");
 	}
-		
 
 	public void pet_reaction_false()
     {
@@ -526,4 +527,117 @@ public class Petctrl : MonoBehaviour
 	}
 
 
+
+
+
+
+
+
+	public void set_pet_speed_1()
+    {
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.speed = 1f;
+	}
+
+	public void pet_idle_sit()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("070_Idle_Blend_Sit");
+	}
+
+	public void pet_sit_idle()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("262_Sit_Blend_Idle");
+	}
+
+	public void pet_idle_sit_idle()
+	{
+		pet_idle_sit();
+		Invoke("pet_sit_idle", 4f);
+	}
+
+	public void pet_lying_begin()
+    {
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("009_Ball_Lying_Begin");
+	}
+
+	public void pet_lying_end()
+    {
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("010_Ball_Lying_End");
+	}
+
+	public void pet_idle_lying_idle()
+    {
+		pet_lying_begin();
+		Invoke("pet_lying_end", 4f);
+    }
+
+	public void pet_jump()
+    {
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("002_Ball_Jump");
+	}
+
+	public void pet_wait()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("311_Stroll_Wag");
+	}
+
+	public void pet_hand()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("281_Skill_Lhand");
+	}
+
+	public void pet_bark()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("050_Expression_Bark2 0");
+	}
+
+	public void pet_RTurn()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("078_Idle_Right_Twirl");
+	}
+
+	public void pet_LTurn()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("076_Idle_Left_Twirl");
+	}
+
+	public void pet_lay_begin ()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("067_Idle_Blend_LieOnBack_1");
+	}
+
+	public void pet_lay_end()
+	{
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("086_LieOnBack_Blend_Idel_1");
+	}
+
+	public void pet_idle_lay_idle()
+    {
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.speed = 2f;
+		pet_lay_begin();
+		Invoke("set_pet_speed_1", 3f);
+		Invoke("pet_lay_end", 4f);
+	}
+
+	public void pet_come()
+    {
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play("322_Walk_Slow");
+		Invoke("Set_Pome_Idle", 3f);
+	}
+
+	
 }
