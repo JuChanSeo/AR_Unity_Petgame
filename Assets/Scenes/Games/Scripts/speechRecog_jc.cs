@@ -11,9 +11,13 @@ public class speechRecog_jc : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 {
     Petctrl petctrl_script;
     public TMP_Text res_text;
+    public GameObject speak_txt;
     bool _pressed = false;
+    bgm_player bgm_player_;
+
     public void OnPointerDown(PointerEventData eventData)
     {
+        speak_txt.SetActive(true);
         Debug.Log("버튼이 눌려지고 있음");
         startRecording();
         _pressed = true;
@@ -21,6 +25,7 @@ public class speechRecog_jc : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        speak_txt.SetActive(false);
         Debug.Log("버튼 눌림이 해제됨");
         stopRecording();
             _pressed = false;
@@ -36,7 +41,9 @@ public class speechRecog_jc : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     // Start is called before the first frame update
     void Start()
     {
+        speak_txt.SetActive(false);
         petctrl_script = GameObject.Find("Scripts").GetComponent<Petctrl>();
+        bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         _microphoneID = Microphone.devices[0];
         // 사용할 언어(Kor)를 맨 뒤에 붙임
         url = "https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang=Kor";
@@ -145,7 +152,8 @@ public class speechRecog_jc : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             petctrl_script.pet_idle_sit_idle();
         }
-        else if(motion_text == "엎드려" || motion_text.Contains("엎") || motion_text.Contains("압"))
+        else if(motion_text == "엎드려" || motion_text.Contains("엎") || motion_text.Contains("업") || motion_text.Contains("업드")
+             || motion_text.Contains("어뜨"))
         {
             petctrl_script.pet_idle_lying_idle();
         }
@@ -153,12 +161,13 @@ public class speechRecog_jc : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             petctrl_script.pet_wait();
         }
-        else if (motion_text == "점프" || motion_text.Contains("점") || motion_text.Contains("뛰"))
+        else if (motion_text == "점프" || motion_text.Contains("점") || motion_text.Contains("뛰") || motion_text.Contains("띄")
+            || motion_text.Contains("쩜"))
         {
             petctrl_script.pet_jump();
         }
-        else if (motion_text == "짖어" || motion_text.Contains("짖") || motion_text.Contains("앉") || motion_text.Contains("울어")
-                || motion_text.Contains("멍"))
+        else if (motion_text == "짖어" || motion_text.Contains("짖") || motion_text.Contains("울어")
+                || motion_text.Contains("멍") || motion_text.Contains("몽"))
         {
             petctrl_script.pet_bark();
         }

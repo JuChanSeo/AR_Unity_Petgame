@@ -595,8 +595,10 @@ public class Petctrl : MonoBehaviour
 
 	public void pet_bark()
 	{
+		Debug.Log("pet_bark 함수 실행");
 		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
-		anim.Play("050_Expression_Bark2 0");
+		anim.Play("049_Expression_Bark");
+		bgm_player_.dog_sound_excute();
 	}
 
 	public void pet_RTurn()
