@@ -171,6 +171,11 @@ public class speechRecog_jc : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             petctrl_script.pet_bark();
         }
+        else
+        {
+            petctrl_script.set_text_speechBubble("다시 말해볼까요?");
+            petctrl_script.pet_reaction_false();
+        }
         //else if (motion_text == "손")
         //{
         //    petctrl_script.pet_hand();
