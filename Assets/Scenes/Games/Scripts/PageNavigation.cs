@@ -28,7 +28,14 @@ public class PageNavigation : MonoBehaviour
         butoon_effect();
         SceneManager.LoadScene("Tutorial");
     }
-
+    public void exp_game()
+    {
+        SceneManager.LoadScene("game_for_exp");
+    }
+    public void Intention_recog()
+    {
+        SceneManager.LoadScene("Intention_recognition");
+    }
     public void PictureGame_Tutorial()
     {
         SceneManager.LoadScene("Tutorial_Game3");

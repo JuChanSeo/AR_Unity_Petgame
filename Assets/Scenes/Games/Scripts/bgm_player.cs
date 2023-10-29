@@ -20,6 +20,7 @@ public class bgm_player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         audio_ = GameObject.Find("Audio player").GetComponent<AudioSource>();
         audio_.Play();
+        Debug.Log("배경음악 실행");
     }
 
     public void butoon_effect()

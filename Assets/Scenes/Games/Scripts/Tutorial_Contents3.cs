@@ -118,6 +118,7 @@ public class Tutorial_Contents3 : MonoBehaviour
             arrow_3d.SetActive(true);
             spread_bottle_3d();
             reset_to_empty();
+            tutorial_bt.SetActive(false);
             tutorial_msg.text = "첫 번째 샴푸병을 골라주세요!";
             cnt_next_bath_bt_clicked++;
         }
@@ -139,7 +140,6 @@ public class Tutorial_Contents3 : MonoBehaviour
         else if (cnt_next_bath_bt_clicked == 5)
         {
             arrow_3d.SetActive(false);
-            tutorial_bt.SetActive(false);
             tutorial_msg.text = "잘 하셨어요! 샴푸병을 모두 다 골랐어요!";
             cnt_next_bath_bt_clicked = 0;
             Invoke("re_init", 10f);
