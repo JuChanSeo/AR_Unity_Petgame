@@ -275,8 +275,7 @@ public class Tutorial_Contents1 : MonoBehaviour
             {
                 food_selected[i].transform.position = Camera.main.transform.position
                                                 + 0.7f * Camera.main.transform.forward
-                                                + (-0.2f + i * 0.2f) * Vector3.right
-                                                + Vector3.up * 0.15f;
+                                                + (-0.2f + i * 0.2f) * Vector3.right;
                 food_selected[i].SetActive(true);
             }
         }
@@ -319,8 +318,7 @@ public class Tutorial_Contents1 : MonoBehaviour
             {
                 food_selected[shuffled_idx[j]].transform.position = Camera.main.transform.position
                                                                 + 0.7f * Camera.main.transform.forward
-                                                                + Vector3.right * (-0.2f + j * 0.2f)
-                                                                + Vector3.up * 0.15f;
+                                                                + Vector3.right * (-0.2f + j * 0.2f);
             }
         }
         arrow_3d.transform.position = food_selected[0].transform.position + 0.1f * Vector3.up;
