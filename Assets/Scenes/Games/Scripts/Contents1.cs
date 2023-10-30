@@ -263,24 +263,21 @@ public class Contents1 : MonoBehaviour
             {
                 food_selected[i].transform.position = Camera.main.transform.position
                                                 + 0.7f * Camera.main.transform.forward
-                                                + (-0.2f + i * 0.2f) * Vector3.right
-                                                + Vector3.up * 0.15f;
+                                                + (-0.2f + i * 0.2f) * Vector3.right;
                 food_selected[i].SetActive(true);
             }
             if (level == 2)
             {
                 food_selected[i].transform.position = Camera.main.transform.position
                                    + 0.7f * Camera.main.transform.forward
-                                   + (-0.3f + i * 0.2f) * Vector3.right
-                                   + Vector3.up * 0.15f;
+                                   + (-0.3f + i * 0.2f) * Vector3.right;
                 food_selected[i].SetActive(true);
             }
             if (level == 3)
             {
                 food_selected[i].transform.position = Camera.main.transform.position
                                   + 0.7f * Camera.main.transform.forward
-                                  + (-0.4f + i * 0.2f) * Vector3.right
-                                  + Vector3.up * 0.15f;
+                                  + (-0.4f + i * 0.2f) * Vector3.right;
                 food_selected[i].SetActive(true);
             }
         }
@@ -306,8 +303,7 @@ public class Contents1 : MonoBehaviour
             {
                 food_selected[shuffle_idx_mixed[j]].transform.position = Camera.main.transform.position
                                                                 + 0.7f * Camera.main.transform.forward
-                                                                + Vector3.right * (-0.2f + j * 0.2f)
-                                                                + Vector3.up * 0.15f;
+                                                                + Vector3.right * (-0.2f + j * 0.2f);
                 Debug.Log($"j:{j} \t cnt_corr:{cnt_corr}");
                 if (j >= cnt_corr) food_selected[j].SetActive(true);
             }
@@ -315,16 +311,14 @@ public class Contents1 : MonoBehaviour
             {
                 food_selected[shuffle_idx_mixed[j]].transform.position = Camera.main.transform.position
                                                                 + 0.7f * Camera.main.transform.forward
-                                                                + Vector3.right * (-0.3f + j * 0.2f)
-                                                                + Vector3.up * 0.15f;
+                                                                + Vector3.right * (-0.3f + j * 0.2f);
                 if (j >= cnt_corr) food_selected[j].SetActive(true);
             }
             if (level == 3)
             {
                 food_selected[shuffle_idx_mixed[j]].transform.position = Camera.main.transform.position
                                                                 + 0.7f * Camera.main.transform.forward
-                                                                + Vector3.right * (-0.4f + j * 0.2f)
-                                                                + Vector3.up * 0.15f;
+                                                                + Vector3.right * (-0.4f + j * 0.2f);
                 if (j >= cnt_corr) food_selected[j].SetActive(true);
             }
         }
@@ -351,24 +345,21 @@ public class Contents1 : MonoBehaviour
             {
                 food_selected[i].transform.position = Camera.main.transform.position
                                                 + 0.7f * Camera.main.transform.forward
-                                                + (-0.2f + i * 0.2f) * Vector3.right
-                                                + Vector3.up * 0.15f;
+                                                + (-0.2f + i * 0.2f) * Vector3.right;
                 food_selected[i].SetActive(true);
             }
             if(level == 2)
             {
                 food_selected[i].transform.position = Camera.main.transform.position
                                    + 0.7f * Camera.main.transform.forward
-                                   + (-0.3f + i * 0.2f) * Vector3.right
-                                   + Vector3.up * 0.15f;
+                                   + (-0.3f + i * 0.2f) * Vector3.right;
                 food_selected[i].SetActive(true);
             }
             if(level == 3)
             {
                 food_selected[i].transform.position = Camera.main.transform.position
                                   + 0.7f * Camera.main.transform.forward
-                                  + (-0.4f + i * 0.2f) * Vector3.right
-                                  + Vector3.up * 0.15f;
+                                  + (-0.4f + i * 0.2f) * Vector3.right;
                 food_selected[i].SetActive(true);
             }
         }
@@ -408,22 +399,19 @@ public class Contents1 : MonoBehaviour
             {
                 food_selected[shuffle_idx_mixed[j]].transform.position = Camera.main.transform.position
                                                                 + 0.7f * Camera.main.transform.forward
-                                                                + Vector3.right * (-0.2f + j * 0.2f)
-                                                                + Vector3.up * 0.15f;
+                                                                + Vector3.right * (-0.2f + j * 0.2f);
             }
             if (level == 2)
             {
                 food_selected[shuffle_idx_mixed[j]].transform.position = Camera.main.transform.position
                                                                 + 0.7f * Camera.main.transform.forward
-                                                                + Vector3.right * (-0.3f + j * 0.2f)
-                                                                + Vector3.up * 0.15f;
+                                                                + Vector3.right * (-0.3f + j * 0.2f);
             }
             if (level == 3)
             {
                 food_selected[shuffle_idx_mixed[j]].transform.position = Camera.main.transform.position
                                                                 + 0.7f * Camera.main.transform.forward
-                                                                + Vector3.right * (-0.4f + j * 0.2f)
-                                                                + Vector3.up * 0.15f;
+                                                                + Vector3.right * (-0.4f + j * 0.2f);
             }
 
         }
