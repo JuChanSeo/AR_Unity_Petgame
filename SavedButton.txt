@@ -1,2 +1,12 @@
 액션 SceneNumber : 3_background QuestionNumber : 74 Question : 좋아하는 영화 장르는 무엇인가요? AudioFileName : 3_background#74#movie1
 내장산 SceneNumber : 3_background QuestionNumber : 3 Question : 단풍이 아름답게 물드는 산은 어느 산인가요? AudioFileName : 3_background#3#fall_flower1
+제주도 SceneNumber : 3_background QuestionNumber : 73 Question : 기억에 남는 여행지는 어디인가요? AudioFileName : 3_background#73#travel2
+등산 SceneNumber : 3_background QuestionNumber : 80 Question : 최근에 했던 운동은 무엇인가요? AudioFileName : 3_background#80#exercise4
+환경보호 SceneNumber : 3_background QuestionNumber : 92 Question : 최근 참여한 자원봉사활동이 있으신가요? AudioFileName : 3_background#92#daily9
+1950년대 SceneNumber : 3_background QuestionNumber : 32 Question : 국민학교 입학은 몇년도에 하셨나요? AudioFileName : 3_background#32#past_me3
+시간이 짧은 횡단보도 SceneNumber : 3_background QuestionNumber : 109 Question : 외출할 때 가장 불편한 점은 무엇인가요? AudioFileName : 3_background#109#environ2
+통화 SceneNumber : 3_background QuestionNumber : 100 Question : 기분이 안 좋을 때 하는 일은 무엇인가요? AudioFileName : 3_background#100#daily17
+같이 살고있음 SceneNumber : 3_background QuestionNumber : 12 Question : 따로 살고 있는 손자녀가 있나요? AudioFileName : 3_background#12#family4
+정보화 교육 SceneNumber : 3_background QuestionNumber : 91 Question : 교육에 참여하신 적이 있으시면 어떤 영역을 배우셨나요? AudioFileName : 3_background#91#daily8
+리코더 SceneNumber : 3_background QuestionNumber : 36 Question : 다룰 수 있는 악기가 있으신가요? AudioFileName : 3_background#36#music3
+여름 SceneNumber : 3_background QuestionNumber : 43 Question : 벚꽃은 어떤 계절에 활짝 필까요? AudioFileName : 3_background#43#spring_flower1
