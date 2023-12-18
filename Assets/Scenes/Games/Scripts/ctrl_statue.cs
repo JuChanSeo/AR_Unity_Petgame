@@ -138,6 +138,11 @@ public class ctrl_statue : MonoBehaviour
         SceneManager.LoadScene("Chapter1");
     }
 
+    public void coin_10000()
+    {
+        PlayerPrefs.SetInt("Coin", 10000);
+    }
+
     public void plus_statu()
     {
 

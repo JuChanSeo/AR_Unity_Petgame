@@ -15,7 +15,7 @@ public class Emotion_2selected : MonoBehaviour
 
     public TextMeshProUGUI selected_emotion; 
     private Color[] emotion_colors; 
-    
+    public SendDataEp sendDataEp;
 
     
     // Start is called before the first frame update
@@ -41,58 +41,67 @@ public class Emotion_2selected : MonoBehaviour
     public void OnButtonClick(){
         var go =  EventSystem.current.currentSelectedGameObject;
         if (go !=null){
+            // Debug.Log(go.name);
             if(go.name != "Selected"){
                 if(go.name !=current_emo){
-                    current_emo=go.name;
-                    var emo_num=go.name.Replace("Emo_option", "");
-                    // current_emo=int.Parse(current_emo)-int.Parse(1);
-                    Debug.Log(emotion_names[int.Parse(emo_num)]+emo_num);
-                    selected_emotion.text=emotion_names[int.Parse(emo_num)];
+                        // Debug.Log(go.name);
+                        current_emo=go.name;
+                        sendDataEp.UpdateEmotion(go.name);
+                        sendDataEp.Send();
+                        var emo_num=go.name.Replace("Emo_option", "");
+                        // current_emo=int.Parse(current_emo)-int.Parse(1);
+                        // Debug.Log(emotion_names[int.Parse(emo_num)]+emo_num);
+                        if(emo_num!="Next_Q"){
+                            if(emo_num!="Home_Button"){
+                                selected_emotion.text=emotion_names[int.Parse(emo_num)];
 
-                    Button Selected_btn= m_Image.GetComponent<Button>();
-                    Color customColor=new Color(255/255f, 255/255f, 255/255f);                        
-                    if((emo_num=="1")||(emo_num=="4")){
-                        customColor=new Color(255/255f, 42/255f, 65/255f);                        
-                    }
-                    if((emo_num=="2")||(emo_num=="5")){
-                        customColor=new Color(255/255f, 119/255f, 52/255f);                        
-                    }
-                    if((emo_num=="3")||(emo_num=="6")){
-                        customColor=new Color(255/255f, 168/255f, 0/255f);                        
-                    }
+                        Button Selected_btn= m_Image.GetComponent<Button>();
+                        Color customColor=new Color(255/255f, 255/255f, 255/255f);                        
+                        if((emo_num=="1")||(emo_num=="4")){
+                            customColor=new Color(255/255f, 42/255f, 65/255f);                        
+                        }
+                        if((emo_num=="2")||(emo_num=="5")){
+                            customColor=new Color(255/255f, 119/255f, 52/255f);                        
+                        }
+                        if((emo_num=="3")||(emo_num=="6")){
+                            customColor=new Color(255/255f, 168/255f, 0/255f);                        
+                        }
 
-                    if((emo_num=="7")||(emo_num=="10")){
-                        customColor=new Color(234/255f, 206/255f, 38/255f);                        
-                    }
-                    if((emo_num=="8")||(emo_num=="11")){
-                        customColor=new Color(255/255f, 190/255f, 42/255f);                        
-                    }
-                    if((emo_num=="9")||(emo_num=="12")){
-                        customColor=new Color(147/255f, 124/255f, 16/255f);                        
-                    }
+                        if((emo_num=="7")||(emo_num=="10")){
+                            customColor=new Color(234/255f, 206/255f, 38/255f);                        
+                        }
+                        if((emo_num=="8")||(emo_num=="11")){
+                            customColor=new Color(255/255f, 190/255f, 42/255f);                        
+                        }
+                        if((emo_num=="9")||(emo_num=="12")){
+                            customColor=new Color(147/255f, 124/255f, 16/255f);                        
+                        }
 
-                    if((emo_num=="13")||(emo_num=="16")){
-                        customColor=new Color(42/255f, 65/255f, 255/255f);                           
-                    }if((emo_num=="14")||(emo_num=="17")){
-                        customColor=new Color(42/255f, 136/255f, 255/255f);                         
-                    }if((emo_num=="15")||(emo_num=="18")){
-                        customColor=new Color(0/255f, 209/255f,255/255f);                        
-                    }
+                        if((emo_num=="13")||(emo_num=="16")){
+                            customColor=new Color(42/255f, 65/255f, 255/255f);                           
+                        }if((emo_num=="14")||(emo_num=="17")){
+                            customColor=new Color(42/255f, 136/255f, 255/255f);                         
+                        }if((emo_num=="15")||(emo_num=="18")){
+                            customColor=new Color(0/255f, 209/255f,255/255f);                        
+                        }
 
-                    if((emo_num=="19")||(emo_num=="22")){
-                        customColor=new Color(211/255f, 255/255f, 42/255f);                        
-                    }if((emo_num=="20")||(emo_num=="23")){
-                        customColor=new Color(64/255f, 255/255f, 42/255f);                        
-                    }if((emo_num=="21")||(emo_num=="24")){
-                        customColor=new Color(12/255f, 183/255f,11/255f);                        
-                    }
-                    // Color customColor=new Color(255/255f, 42/255f, 65/255f);
+                        if((emo_num=="19")||(emo_num=="22")){
+                            customColor=new Color(211/255f, 255/255f, 42/255f);                        
+                        }if((emo_num=="20")||(emo_num=="23")){
+                            customColor=new Color(64/255f, 255/255f, 42/255f);                        
+                        }if((emo_num=="21")||(emo_num=="24")){
+                            customColor=new Color(12/255f, 183/255f,11/255f);                        
+                        }
+                        // Color customColor=new Color(255/255f, 42/255f, 65/255f);
 
 
-                    ColorBlock cb = Selected_btn.colors;
-                    cb.normalColor = customColor;
-                    Selected_btn.colors=cb; 
-                    // Image_Renderer.material.SetColor("_Color", customColor);
+                        ColorBlock cb = Selected_btn.colors;
+                        cb.normalColor = customColor;
+                        Selected_btn.colors=cb; 
+                        // Image_Renderer.material.SetColor("_Color", customColor);
+                            }
+                        }
+                        
                     
                 }
             }

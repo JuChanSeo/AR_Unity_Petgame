@@ -90,11 +90,11 @@ public class Petctrl : MonoBehaviour
 			&& SceneManager.GetActiveScene().name != "Game3"
 			&& SceneManager.GetActiveScene().name == "Chapter5")
         {
-			Coin_cnt.text = "X " + player_statu_script.Coin.ToString();
-			energy.value = player_statu_script.energy;
-			fatigue.value = player_statu_script.fatigue;
-			cleanliness.value = player_statu_script.cleanliness;
-			intimity.value = player_statu_script.intimity;
+			Coin_cnt.text = "X " + PlayerPrefs.GetInt("Coin").ToString();
+			energy.value = PlayerPrefs.GetFloat("energy");
+			fatigue.value = PlayerPrefs.GetFloat("fatigue");
+			cleanliness.value = PlayerPrefs.GetFloat("cleanliness");
+			intimity.value = PlayerPrefs.GetFloat("intimity");
 		}
 
 
@@ -641,5 +641,11 @@ public class Petctrl : MonoBehaviour
 		Invoke("Set_Pome_Idle", 3f);
 	}
 
+	public void play_anim_and_idel(string anim_name)
+    {
+		anim = spawnedObject.transform.GetChild(0).GetComponent<Animator>();
+		anim.Play(anim_name);
+		Invoke("pet_idle", 4f);
+	}
 	
 }

@@ -48,6 +48,7 @@ public class ButtonClick : MonoBehaviour
     public int currentQuestion;
 
     public TMP_Text QuestionTxt;
+    public TextMeshProUGUI postAnswer;
 
     // [System.Serializable]
     public class QuestionAndAnswersss
@@ -211,6 +212,7 @@ public class ButtonClick : MonoBehaviour
         // Selection_btn1.onClick.AddListener
 
         answer = Selection1.GetComponentInChildren<TMP_Text>().text;
+        this.postAnswer.text = answer;
         selectedAnswers.Add(answer);
         Selection1.onClick.AddListener(() => ToggleAnswerSelection(answer));
     }
@@ -218,6 +220,7 @@ public class ButtonClick : MonoBehaviour
     public void button2clicked()
     {
         answer = Selection2.GetComponentInChildren<TMP_Text>().text;
+        this.postAnswer.text = answer;
         selectedAnswers.Add(answer);
         Selection1.onClick.AddListener(() => ToggleAnswerSelection(answer));
     }
@@ -225,6 +228,7 @@ public class ButtonClick : MonoBehaviour
     public void button3clicked()
     {
         answer = Selection3.GetComponentInChildren<TMP_Text>().text;
+        this.postAnswer.text = answer;
         selectedAnswers.Add(answer);
         Selection1.onClick.AddListener(() => ToggleAnswerSelection(answer));
     }
@@ -232,8 +236,8 @@ public class ButtonClick : MonoBehaviour
     public void button4clicked()
     {
         GameObject Selection_btn4 = Selection4.gameObject;
-
         answer = Selection4.GetComponentInChildren<TMP_Text>().text;
+        this.postAnswer.text = answer;
         selectedAnswers.Add(answer);
         Selection1.onClick.AddListener(() => ToggleAnswerSelection(answer));
     }
@@ -307,17 +311,17 @@ public class ButtonClick : MonoBehaviour
     {
         if (selectedAnswers.Count > 0)
         {
-            // 선택한 답변을 파일에 저장합니다.
-            foreach (string answer in selectedAnswers)
-            {
-                File.AppendAllText(filePath, answer + " ");
+            //// 선택한 답변을 파일에 저장합니다.
+            //foreach (string answer in selectedAnswers)
+            //{
+            //    File.AppendAllText(filePath, answer + " ");
                 
-                // string json = JsonUtility.ToJson(answer, true);
-                // File.WriteAllText(saveFilePath, json);
+            //    // string json = JsonUtility.ToJson(answer, true);
+            //    // File.WriteAllText(saveFilePath, json);
 
-            }
-            File.AppendAllText(filePath, "SceneNumber : " + dataList[currentQuestion].SceneNumber + " QuestionNumber : " + dataList[currentQuestion].QuestionNumber +
-            " Question : " + dataList[currentQuestion].Question + " AudioFileName : " + dataList[currentQuestion].AudioFileName + Environment.NewLine);
+            //}
+            //File.AppendAllText(filePath, "SceneNumber : " + dataList[currentQuestion].SceneNumber + " QuestionNumber : " + dataList[currentQuestion].QuestionNumber +
+            //" Question : " + dataList[currentQuestion].Question + " AudioFileName : " + dataList[currentQuestion].AudioFileName + Environment.NewLine);
 
             selectedAnswers.Clear();
         }

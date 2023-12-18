@@ -20,7 +20,7 @@ public class Task3 : MonoBehaviour
 
         picture_btn.onClick.AddListener(()=> SceneChange("21_Emo_pict"));
         wording_btn.onClick.AddListener(()=> SceneChange("22_Emo_word"));
-        sentence_btn.onClick.AddListener(()=>SceneChange("23_Emo_sent"));
+        sentence_btn.onClick.AddListener(()=>SceneChange("23_Emo_sentence"));
     }
 
     public void SceneChange(string scene_name){

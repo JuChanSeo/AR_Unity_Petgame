@@ -27,7 +27,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Games/Scenes/Tutorial_Game3.unity
     guid: 835b74509a1f84f87bdeead7d11b36cb
   - enabled: 1
-    path: Assets/Scenes/Games/Scenes/YG/00_Menu.unity
+    path: Assets/Scenes/Games/Scenes/game_for_exp.unity
+    guid: afd55fa388f124d4fbee6e4da29d8c33
+  - enabled: 1
+    path: Assets/Scenes/Games/Scenes/Intention_recognition.unity
+    guid: 7e76d61e146d247daad2bfa51fc39410
+  - enabled: 1
+    path: Assets/Scenes/Games/Scenes/YG/00_Tutorial.unity
+    guid: 3889a5fbda5ec4fac98c706571541182
+  - enabled: 1
+    path: Assets/Scenes/Games/Scenes/YG/10_Menu.unity
     guid: fc94f7f71fd894751ae19009cd258bef
   - enabled: 1
     path: Assets/Scenes/Games/Scenes/YG/20_Emotion.unity
@@ -45,26 +54,23 @@ EditorBuildSettings:
     path: Assets/Scenes/Games/Scenes/YG/30_Background.unity
     guid: dc02d1f8e0fe94237bb980fc2389fbc3
   - enabled: 1
-    path: Assets/Scenes/Games/Scenes/YG/40_Episode.unity
+    path: Assets/Scenes/Games/Scenes/YG/40_Episode_selection.unity
+    guid: b71a9abe0e59744b8a16c2c15ca10d74
+  - enabled: 1
+    path: Assets/Scenes/Games/Scenes/YG/41_Episode_Q.unity
     guid: 73cca9a5d8307460d9ef1510cc17eece
   - enabled: 1
-    path: Assets/Scenes/Games/Scenes/YG/99921_pict.unity
-    guid: 9fa103178aed54cf0b267da8f25d598d
+    path: Assets/Scenes/Games/Scenes/YG/42_Episode_Q.unity
+    guid: 2d715fd88f9a74588af16191f37ad248
   - enabled: 1
-    path: Assets/Scenes/Games/Scenes/YG/99922_word.unity
-    guid: 9199aaa737d2146d2bd27302b30ff8f0
+    path: Assets/Scenes/Games/Scenes/YG/43_Episode_Q.unity
+    guid: 800ebc5959a1f4b14ab28c8d2a86cdac
   - enabled: 1
-    path: Assets/Scenes/Games/Scenes/YG/Template 1.unity
-    guid: 70a81c3a0208a4be7aeda244d3cfbe31
+    path: Assets/Scenes/Games/Scenes/YG/44_Episode_Q.unity
+    guid: 56cf75d059c2d4665b543c7398ee86df
   - enabled: 1
-    path: Assets/Scenes/Games/Scenes/YG/Template 2.unity
-    guid: 813455d0ed0b347fcbba1f9d4d2aeb73
-  - enabled: 1
-    path: Assets/Scenes/Games/Scenes/game_for_exp.unity
-    guid: afd55fa388f124d4fbee6e4da29d8c33
-  - enabled: 1
-    path: Assets/Scenes/Games/Scenes/Intention_recognition.unity
-    guid: 7e76d61e146d247daad2bfa51fc39410
+    path: Assets/Scenes/Games/Scenes/YG/45_Episode_Q.unity
+    guid: 4b7b4c18c12b943bdbe82210417c7b74
   m_configObjects:
     AR Foundation RemoteARFoundationRemoteLoaderSettings: {fileID: 11400000, guid: fc4fec47a0bd844839eab5f34608fbf9,
       type: 2}

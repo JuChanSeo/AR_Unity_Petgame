@@ -37,8 +37,8 @@ public class Intro : MonoBehaviour
         SceneManager.LoadScene("30_Background");        
     }
     void BTN4_OnClick(){
-        Debug.Log("40_Episode");
-        SceneManager.LoadScene("40_Episode");        
+        Debug.Log("40_Episode_selection");
+        SceneManager.LoadScene("40_Episode_selection");        
     }
 
     // void LoadingScene(){

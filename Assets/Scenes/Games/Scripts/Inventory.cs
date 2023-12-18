@@ -15,14 +15,18 @@ public class inven_data
 
 public class Inventory : MonoBehaviour
 {
+    bool flag_scan_mode;
     private string m_filePath;
     private BinaryFormatter binaryform = new BinaryFormatter();
 
     int num_items = 36;
     List<inven_data> datas_inven = new List<inven_data>();
     GameObject curr_clicked_item;
+    public List<GameObject> toy_objs;
 
     Player_statu player_statu_script;
+    Petctrl petctrl_script;
+    Logger logger_script;
 
     public GameObject inventory_bt;
     public GameObject inventory_UI;
@@ -30,9 +34,15 @@ public class Inventory : MonoBehaviour
     public TMPro.TMP_Text coin_text;
     List<string> item_names = new List<string>();
 
+    Vector2 Center_device;
+    RaycastHit hit;
+
+    private GameObject copyed_obj;
+
     // Start is called before the first frame update
     void Start()
     {
+        Center_device = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Debug.Log(inventory_UI.transform.position);
         inventory_UI.transform.position = new Vector3(1872, 842, 0);
 
@@ -48,6 +58,8 @@ public class Inventory : MonoBehaviour
         }
 
         player_statu_script = GameObject.Find("player_statu").GetComponent<Player_statu>();
+        petctrl_script = GameObject.Find("Scripts").GetComponent<Petctrl>();
+        logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
         //datas_inven[5].is_sold = false;
 
         foreach (var item in datas_inven)
@@ -64,12 +76,48 @@ public class Inventory : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(flag_scan_mode)
+        {
+            scan_mode();
+        }
+    }
 
 
+    public void scan_mode()
+    {
+        var ray = Camera.main.ScreenPointToRay(Center_device);
+        var hasHit = Physics.Raycast(ray, out hit, float.PositiveInfinity);
+        if (hasHit && hit.transform.name.StartsWith("Mesh"))
+        {
+            if(copyed_obj != null)
+            {
+                Debug.Log("copyed obj is not null obj");
+                copyed_obj.transform.position = hit.point + 0.1f*Vector3.up;
+                copyed_obj.transform.rotation = new Quaternion(0f, Camera.main.transform.rotation.y + 180f, 0f, 0f);
+            }
+            else
+            {
+                copyed_obj = GameObject.Find(curr_clicked_item.name);
+            }
+        }
+
+        if(Input.touchCount > 0)//터치가 발생하면
+        {
+            Instantiate(copyed_obj, hit.point + 0.1f * Vector3.up, new Quaternion(0f, Camera.main.transform.rotation.y + 180f, 0f, 0f));
+            petctrl_script.not_move_pet = false;
+            copyed_obj.transform.position = new Vector3(-1000f, -1000f, -1000f);
+            copyed_obj = null;
+            flag_scan_mode = false;
+        }
+
+    }
     public void inventory_bt_clicked()
     {
         if(inventory_UI.gameObject.activeSelf == false)
         {
+            logger_script.logger_master.insert_data("인벤토리 버튼 클릭");
             inventory_UI.SetActive(true);
         }
     }
@@ -164,15 +212,30 @@ public class Inventory : MonoBehaviour
     public void show_SalePopup()
     {
         GameObject clickedObj = EventSystem.current.currentSelectedGameObject;
+        curr_clicked_item = clickedObj;
         //자물쇠가 걸려 있는 인벤토리를 선택할시.
         if (clickedObj.transform.GetChild(1).gameObject.activeSelf == true)
         {
-            curr_clicked_item = clickedObj;
             sale_popup.SetActive(true);
         }
-        else
+        else //자물쇠 표시가 없는 아이템을 선택할 시(구매 완료된 상품)
         {
             Debug.Log("이미 구매 완료된 상품입니다");
+            inventory_UI.SetActive(false);
+            if(clickedObj.CompareTag("item_anim"))
+            {
+                logger_script.logger_master.insert_data($"인벤토리 애니메이션 실행: {clickedObj.name}");
+                //Debug.Log($"인벤토리 애니메이션 실행: {clickedObj.name}");
+                petctrl_script.play_anim_and_idel(clickedObj.name);
+            }
+            else if(clickedObj.CompareTag("item_obj"))
+            {
+                logger_script.logger_master.insert_data($"인벤토리 아이템 배치: {clickedObj.name}");
+                flag_scan_mode = true;
+                //copyed_obj = Instantiate(GameObject.Find(clickedObj.name));
+                //copyed_obj.SetActive(true);
+                petctrl_script.not_move_pet = true;
+            }
             //뭔가 다른걸 넣어보자, 즉 그 아이템으로 무엇을 할것인지 정해서 넣어보자
         }
     }
@@ -191,9 +254,11 @@ public class Inventory : MonoBehaviour
                         player_statu_script.Coin -= 5;
                         item.is_sold = true;
                         curr_clicked_item.transform.GetChild(1).gameObject.SetActive(false);
+                        logger_script.logger_master.insert_data($"아이템 구매 완료:{item.item_name}");
                     }
                     else
                     {
+                        logger_script.logger_master.insert_data("구매 실패. 코인 부족");
                         Debug.Log("돈이 부족해서 구매가 안됩니다");
                     }
                     PlayerPrefs.SetInt("Coin", player_statu_script.Coin);

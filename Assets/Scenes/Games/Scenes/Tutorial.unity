@@ -14697,6 +14697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fefb0b90fa44c0d963542de2ac4c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_objs: []
   inventory_bt: {fileID: 964953187}
   inventory_UI: {fileID: 329009179}
   sale_popup: {fileID: 953573803}
@@ -27784,6 +27785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fefb0b90fa44c0d963542de2ac4c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toy_objs: []
   inventory_bt: {fileID: 964953187}
   inventory_UI: {fileID: 626147362}
   sale_popup: {fileID: 0}

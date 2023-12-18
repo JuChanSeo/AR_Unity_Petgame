@@ -16,6 +16,7 @@ public class Contents1 : MonoBehaviour
     int cnt_moving_average;
     public GameObject net;
     Petctrl petctrl_script;
+    Logger logger_script;
     RaycastHit hit;
     Vector2 Center_device;
     int cnt_corr;
@@ -42,6 +43,7 @@ public class Contents1 : MonoBehaviour
         Debug.Log(contents1_panel.transform.position);
 
         petctrl_script = GameObject.Find("Scripts").GetComponent<Petctrl>();
+        logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
         level = player.Level_hungry;
@@ -253,6 +255,7 @@ public class Contents1 : MonoBehaviour
         
     public void rewatch_bt_clicked()
     {
+        logger_script.logger_master.insert_data("다시 보기 버튼 클릭");
         c1_flag = false;
         contents1_panel.SetActive(false);
         //처음 정답 화면 보여주기
@@ -328,6 +331,7 @@ public class Contents1 : MonoBehaviour
 
     public void hungry_bt_click()
     {
+        logger_script.logger_master.insert_data("음식 맞추기 게임 시작");
         int num_food;
         num_food = level + 2; //1단계면 3개, 2단계면 4개, 3단계면 5개
         //bt_face.SetActive(false);
@@ -422,6 +426,7 @@ public class Contents1 : MonoBehaviour
 
     public void re_init()
     {
+        logger_script.logger_master.insert_data("음식 순서 맞추기 게임 종료");
         //bt_face.SetActive(true);
         time_remain_text.text = "";
         bt_picture.SetActive(true);
@@ -466,6 +471,7 @@ public class Contents1 : MonoBehaviour
                 {
                     if(success_flag)
                     {
+                        logger_script.logger_master.insert_data("음식 순서 맞추기 게임 성공");
                         player.change_statu(0.02f, -0.02f, 0, 0.01f);
                         time_remain_text.text = "축하드립니다 모두 맞추셨습니다!";
                         bgm_player_.getitem_sound_excute();
@@ -484,6 +490,7 @@ public class Contents1 : MonoBehaviour
                 {
                     if(success_flag)
                     {
+                        logger_script.logger_master.insert_data($"맞춘 음식 갯수:{cnt_corr}/3");
                         petctrl_script.set_text_speechBubble("잘 맞추셨어요!");
                         bgm_player_.success_sound_excute();
                     }
@@ -495,6 +502,7 @@ public class Contents1 : MonoBehaviour
                 cnt_false++;
                 if (cnt_false == 5)
                 {
+                    logger_script.logger_master.insert_data("음식 순서 맞추기 게임 실패");
                     petctrl_script.set_text_speechBubble("다음 음식을\n골라볼까요?");
                     cnt_false = 0;
                     success_flag = false;
@@ -507,6 +515,7 @@ public class Contents1 : MonoBehaviour
                 }
                 else
                 {
+                    logger_script.logger_master.insert_data($"음식 순서 맞추기 오답 횟수: {cnt_false}");
                     petctrl_script.set_text_speechBubble("다시 골라볼까요?");
                     bgm_player_.fail_sound_excute();
                     petctrl_script.pet_reaction_false();
@@ -526,6 +535,7 @@ public class Contents1 : MonoBehaviour
                 {
                     if (success_flag)
                     {
+                        logger_script.logger_master.insert_data("음식 순서 맞추기 게임 성공");
                         player.change_statu(0.04f, -0.04f, 0, 0.02f);
                         time_remain_text.text = "축하드립니다 모두 맞추셨습니다!";
                         bgm_player_.getitem_sound_excute();
@@ -544,6 +554,7 @@ public class Contents1 : MonoBehaviour
                 {
                     if (success_flag)
                     {
+                        logger_script.logger_master.insert_data($"맞춘 음식 갯수:{cnt_corr}/4");
                         petctrl_script.set_text_speechBubble("잘 맞추셨어요!");
                         bgm_player_.success_sound_excute();
                     }
@@ -555,6 +566,7 @@ public class Contents1 : MonoBehaviour
                 cnt_false++;
                 if (cnt_false == 5)
                 {
+                    logger_script.logger_master.insert_data("음식 순서 맞추기 게임 실패");
                     petctrl_script.set_text_speechBubble("다음 음식을\n골라볼까요?");
                     cnt_false = 0;
                     success_flag = false;
@@ -567,6 +579,7 @@ public class Contents1 : MonoBehaviour
                 }
                 else
                 {
+                    logger_script.logger_master.insert_data($"음식 순서 맞추기 오답 횟수: {cnt_false}");
                     petctrl_script.set_text_speechBubble("다시 골라볼까요?");
                     bgm_player_.fail_sound_excute();
                     petctrl_script.pet_reaction_false();

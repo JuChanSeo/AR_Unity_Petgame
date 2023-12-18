@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Contents2 : MonoBehaviour
 {
     Petctrl petctrl_script;
+    Logger logger_script;
 
     public GameObject reshow_bt;
     public GameObject linegenerator;
@@ -45,6 +46,7 @@ public class Contents2 : MonoBehaviour
         petctrl_script = GameObject.Find("Scripts").GetComponent<Petctrl>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
+        logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
 
         list_answer_set = new List<List<string>>{
             new List<string> {"dot1", "dot2", "dot5", "dot7"},//4-1
@@ -184,7 +186,19 @@ public class Contents2 : MonoBehaviour
                             if(success_flag)
                             {
                                 Debug.Log("맞습니다-2");
-                                player.change_statu(0, -0.03f, 0, 0.03f);
+                                if(level == 1)
+                                {
+                                    player.change_statu(0, -0.03f, 0, 0);
+                                }
+                                else if(level == 2)
+                                {
+                                    player.change_statu(0, -0.04f, 0, 0);
+                                }
+                                else if(level ==3)
+                                {
+                                    player.change_statu(0, -0.05f, 0, 0);
+                                }
+                                logger_script.logger_master.insert_data("잠자기 게임 성공");
                                 content2_panel.SetActive(false);
                                 linegenerator.SetActive(false);
                                 petctrl_script.set_text_speechBubble("패턴 맞추기에\n성공하였습니다!");
@@ -196,6 +210,7 @@ public class Contents2 : MonoBehaviour
                             }
                             else
                             {
+                                logger_script.logger_master.insert_data("잠자기 게임 실패, 5번 이상 오답");
                                 petctrl_script.set_text_speechBubble("다음에 다시\n도전해볼까요?");
                                 petctrl_script.pet_reaction_false();
                                 content2_panel.SetActive(false);
@@ -215,6 +230,7 @@ public class Contents2 : MonoBehaviour
                             success_flag = false;
                             if (cnt_answer == 1)
                             {
+                                logger_script.logger_master.insert_data("잠자기 게임 실패, 5번 이상 오답");
                                 petctrl_script.set_text_speechBubble("다음에 다시\n도전해볼까요?");
                                 content2_panel.SetActive(false);
                                 linegenerator.SetActive(false);
@@ -227,6 +243,7 @@ public class Contents2 : MonoBehaviour
                         }
                         else
                         {
+                            logger_script.logger_master.insert_data($"오답 입니다. 오답 횟수: {cnt_false}");
                             petctrl_script.set_text_speechBubble("다시 그려볼까요?");
                             bgm_player_.fail_sound_excute();
                             petctrl_script.pet_reaction_false();
@@ -245,6 +262,7 @@ public class Contents2 : MonoBehaviour
 
     public void reshow_bt_clicked()
     {
+        logger_script.logger_master.insert_data("패턴 다시보기 버튼 클릭");
         content2_panel.SetActive(false);
 
         //처음 정답 화면 보여주기
@@ -332,6 +350,7 @@ public class Contents2 : MonoBehaviour
 
     public void sleep_bt_clicked()
     {
+        logger_script.logger_master.insert_data("잠자기 게임 시작");
         c2_flag = true;
         petctrl_script.not_move_pet = true;
         linegenerator.SetActive(true);
@@ -343,6 +362,7 @@ public class Contents2 : MonoBehaviour
 
     public void sleep_bt_reset()
     {
+        logger_script.logger_master.insert_data("잠자기 게임 종료");
         c2_flag = false;
         petctrl_script.not_move_pet = false;
         //bt_face.SetActive(true);

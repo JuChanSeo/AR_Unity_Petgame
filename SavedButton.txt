@@ -10,3 +10,23 @@
 정보화 교육 SceneNumber : 3_background QuestionNumber : 91 Question : 교육에 참여하신 적이 있으시면 어떤 영역을 배우셨나요? AudioFileName : 3_background#91#daily8
 리코더 SceneNumber : 3_background QuestionNumber : 36 Question : 다룰 수 있는 악기가 있으신가요? AudioFileName : 3_background#36#music3
 여름 SceneNumber : 3_background QuestionNumber : 43 Question : 벚꽃은 어떤 계절에 활짝 필까요? AudioFileName : 3_background#43#spring_flower1
+돈 SceneNumber : 3_background QuestionNumber : 60 Question : 돌잡이에서 무엇을 잡았나요? AudioFileName : 3_background#60#event3
+손녀 SceneNumber : 3_background QuestionNumber : 12 Question : 따로 살고 있는 손자녀가 있나요? AudioFileName : 3_background#12#family4
+유채꽃 SceneNumber : 3_background QuestionNumber : 47 Question : 봄에는 어떤 꽃이 피나요? AudioFileName : 3_background#47#spring_flower5
+영화를 즐기지 않음 SceneNumber : 3_background QuestionNumber : 76 Question : 한국영화와 외국영화 중 어떤 것을 좋아하나요? AudioFileName : 3_background#76#movie3
+일주일에 1회 정도 SceneNumber : 3_background QuestionNumber : 14 Question : 손자녀와 연락은 얼마나 자주 하시나요? AudioFileName : 3_background#14#family6
+교양 SceneNumber : 3_background QuestionNumber : 1 Question : 즐겨보는 TV프로그램은 어떤 것인가요? AudioFileName : 3_background#1#TV1
+5월 5일 SceneNumber : 3_background QuestionNumber : 51 Question : 부처님오신날은 음력 몇월 며칠일까요? AudioFileName : 3_background#51#spring_event1
+행복 SceneNumber : 3_background QuestionNumber : 59 Question : 어릴때 보름달을 보며 어떤 소원을 비셨나요? AudioFileName : 3_background#59#event2
+경제 SceneNumber : 3_background QuestionNumber : 96 Question : 현재 가장 중요하다고 생각하는 활동은 무엇인가요? AudioFileName : 3_background#96#daily13
+음악감상 SceneNumber : 3_background QuestionNumber : 100 Question : 기분이 안 좋을 때 하는 일은 무엇인가요? AudioFileName : 3_background#100#daily17
+빈잔 SceneNumber : 3_background QuestionNumber : 38 Question : 나훈아가 부른 노래는 무엇일까요? AudioFileName : 3_background#38#music5
+운동 관련 SceneNumber : 3_background QuestionNumber : 91 Question : 교육에 참여하신 적이 있으시면 어떤 영역을 배우셨나요? AudioFileName : 3_background#91#daily8
+고추장 SceneNumber : 3_background QuestionNumber : 25 Question : 배추와 발효 과정이 특징인 우리나라 음식은 뭘까요? AudioFileName : 3_background#25#winter_food2
+3월 1일 SceneNumber : 3_background QuestionNumber : 51 Question : 부처님오신날은 음력 몇월 며칠일까요? AudioFileName : 3_background#51#spring_event1
+계모임 SceneNumber : 3_background QuestionNumber : 93 Question : 최근 참여한 단체활동이 있으신가요? AudioFileName : 3_background#93#daily10
+냉면 SceneNumber : 3_background QuestionNumber : 69 Question : 좋아하는 여름 음식은 무엇인가요? AudioFileName : 3_background#69#summer_food2
+영국 SceneNumber : 3_background QuestionNumber : 72 Question : 해외여행을 갈 수 있다면 어느 나라에 가고 싶나요? AudioFileName : 3_background#72#travel1
+넓은바다 SceneNumber : 3_background QuestionNumber : 70 Question : 바다의 어떤 점을 좋아하시나요? AudioFileName : 3_background#70#summer_place1
+수영 SceneNumber : 3_background QuestionNumber : 80 Question : 최근에 했던 운동은 무엇인가요? AudioFileName : 3_background#80#exercise4
+22시 SceneNumber : 3_background QuestionNumber : 99 Question : 보통 몇시에 주무시나요? AudioFileName : 3_background#99#daily16

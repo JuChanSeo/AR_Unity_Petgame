@@ -19,6 +19,7 @@ public class emotion_selected : MonoBehaviour
     public Sprite emoji8_sprite;
     public Sprite emoji9_sprite;
     public Sprite question_sprite;
+    public SendDataEp sendDataEp;
 
 
     void Start()
@@ -36,7 +37,8 @@ public class emotion_selected : MonoBehaviour
         var go =  EventSystem.current.currentSelectedGameObject;
         if (go !=null){
             if(go.name !=current_emo){
-                Debug.Log(go.name);
+                sendDataEp.UpdateEmotion(go.name);
+                sendDataEp.Send();
                 current_emo=go.name;
                 // Sprite emoji = Resources.Load<Sprite>(current_emo);
                 if(current_emo.Contains("1")){

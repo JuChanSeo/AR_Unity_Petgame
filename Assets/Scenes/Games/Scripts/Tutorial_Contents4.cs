@@ -126,16 +126,16 @@ public class Tutorial_Contents4 : MonoBehaviour
                         //    petctrl_script.set_text_speechBubble("친밀도를 채운 후 \n공놀이를 하고싶어요");
                         //    return;
                         //}
-                        copyed_ball_showup.SetActive(false);
-                        content4_panel.SetActive(false);
                         touch_cnt = 0;
-                        if (copyed_ball == null)
+                        if (copyed_ball == null && copyed_ball_showup.activeSelf == true)
                         {
                             copyed_ball = Instantiate(ball, ray.origin, Quaternion.identity);
                             var rigidbody = copyed_ball.GetComponent<Rigidbody>();
                             rigidbody.velocity = ray.direction * 3;
                             Invoke("set_ball_velocity_0", 5f);
                             intimity_next_bt_clicked();
+                            copyed_ball_showup.SetActive(false);
+                            content4_panel.SetActive(false);
                             //Invoke("set_ball_active_false", 15f);
                         }
                         //else

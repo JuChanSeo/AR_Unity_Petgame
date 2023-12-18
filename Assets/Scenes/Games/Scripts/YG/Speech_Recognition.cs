@@ -16,7 +16,7 @@ public class Speech_Recognition : MonoBehaviour {
     struct ClipData{
         public int samples;
     }
-    
+   
 
     const int HEADER_SIZE = 44;
     private int minFreq;
@@ -33,16 +33,15 @@ public class Speech_Recognition : MonoBehaviour {
     public Button stop; 
 
     // 본인 프로젝트 api key 입력
-    public string apiKey="AIzaSyBulIpjir1WwDg1E0sMtADThiCSHZSQbdc";
+    // public string apiKey="AIzaSyBulIpjir1WwDg1E0sMtADThiCSHZSQbdc";
 
 	void Start () {
         
+        // Button btn= speak.GetComponent<Button>();
+        speak.onClick.AddListener(SpeakOnClicked);
 
-        Button btn= speak.GetComponent<Button>();
-        btn.onClick.AddListener(SpeakOnClicked);
-
-        Button btn_stop= stop.GetComponent<Button>();
-        btn_stop.onClick.AddListener(StopOnClicked);
+        // Button btn_stop= stop.GetComponent<Button>();
+        stop.onClick.AddListener(StopOnClicked);
         
         // 연결된 마이크가 있는지 확인 
         if(Microphone.devices.Length <= 0){
@@ -154,17 +153,35 @@ public class Speech_Recognition : MonoBehaviour {
         reader.Close();
         Console.WriteLine(result[0]);
         var jsonresponse = SimpleJSON.JSON.Parse(result);
-
+       
         user_text.text=jsonresponse["text"];
-        if (result.Contains("안녕")){
-            play_compliment();
+
+        if (result.Contains("기쁨")){
+            PlayQuestionAudio("5_reaction#1#compliment");
+        }else if (result.Contains("안녕")){
+            PlayQuestionAudio("0_intro#3#intro");
+        }else if (result.Contains("살")){
+            PlayQuestionAudio("1_greeting#6#answer_age");
         }
 
         return result;
     }
 
-    void play_compliment(){
-        Debug.Log("칭찬합니당");
+    public AudioSource audioSource;
+
+    private void PlayQuestionAudio(string audioFileName)
+    {
+        AudioClip audioClip = Resources.Load<AudioClip>(audioFileName);
+        if (audioClip != null)
+        {
+            // Debug.Log(audioClip.name);
+            audioSource.clip = audioClip;
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogError("Audio clip not found: " + audioFileName);
+        }
     }
 
 

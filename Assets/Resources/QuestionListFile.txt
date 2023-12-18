@@ -1,0 +1,41 @@
+scene name	num 	step	text	audio file name
+4_episode	1	period	어떤 시간대에 대해 이야기하고 싶으신가요?	4_episode#1#period.mp3
+4_episode	2	period	아래 보기 중에서 이야기 나누고 싶은 시간대를 선택해주세요. 	4_episode#2#period.mp3
+4_episode	3	period	아래 버튼을 눌러 대화할 시간대를 선택해주세요.	4_episode#3#period.mp3
+4_episode	4	first_total	 '나는 어떤 사람일까?'를 주제로 대화를 나눠보겠습니다.	4_episode#4#first_total.mp3
+4_episode	5	second_total	질풍노도'를 겪었던 10대 시절과 관련된 대화를 나눠보겠습니다.	4_episode#5#second_total.mp3
+4_episode	6	third_total	도전과 열정'이 빛났던 20대에서 30대와 관련된 대화로 나눠보겠습니다.	4_episode#6#third_total.mp3
+4_episode	7	forth_total	열매와 성숙'을 거뒀던 40대에서 50대 시절과 관련된 대화를 나눠보겠습니다.	4_episode#7#forth_total.mp3
+4_episode	8	fifth_total	인생 2막'을 열 미래에 대해서 대화를 나눠보겠습니다.	4_episode#8#fifth_total.mp3
+4_episode	9	first_1	이름이 무엇인가요? 	4_episode#9#first_1.mp3
+4_episode	10	first_2	살던 고향은 어디인가요?	4_episode#10#first_2.mp3
+4_episode	11	first_3	형제 관계가 어떻게 되시나요?	4_episode#11#first_3.mp3
+4_episode	12	first_4	우리집 가훈이나 좌우명이 있다면 무엇인가요?	4_episode#12#first_4.mp3
+4_episode	13	first_5	도시에서 사셨나요, 농촌에서 사셨나요?	4_episode#13#first_5.mp3
+4_episode	14	first_6	어디에서 태어나셨나요?	4_episode#14#first_6.mp3
+4_episode	15	second_1	어린시절 부모님께 칭찬 받았던 일에 대해 알려주세요.	4_episode#15#second_1.mp3
+4_episode	16	second_2	어린시절 부모님께 크게 혼났던 일이 있으신가요?	4_episode#16#second_2.mp3
+4_episode	17	second_3	학교를 다니셨다면, 기억에 남는 일이나 선생님이 있으신가요?	4_episode#17#second_3.mp3
+4_episode	18	second_4	형제가 있다면 같이 겪은 재밌는 일이 있으신가요?	4_episode#18#second_4.mp3
+4_episode	19	second_5	가장 친했던 친구의 이름이나 특징을 설명해 주시겠어요?	4_episode#19#second_5.mp3
+4_episode	20	second_6	학창시절 가졌던 꿈이 있으신가요?	4_episode#20#second_6.mp3
+4_episode	21	third_1	20대에 유행하던 악세사리 중에 기억나는게 있으신가요?	4_episode#21#third_1.mp3
+4_episode	22	third_2	남들보다 잘하고 싶었던 일이 있으신가요?	4_episode#22#third_2.mp3
+4_episode	23	third_3	20대의 나에게 해주고 싶은 말이 있으신가요?	4_episode#23#third_3.mp3
+4_episode	24	third_4	나의 진로에 영향을 준 사람은 누구인가요?	4_episode#24#third_4.mp3
+4_episode	25	third_5	직장생활을 하셨다면, 직장생활은 만족하셨나요?	4_episode#25#third_5.mp3
+4_episode	26	third_6	결혼을 하셨다면, 어디서 어떤 식으로 하셨나요?	4_episode#26#third_6.mp3
+4_episode	27	third_7	배우자가 있다면, 어떻게 만나셨나요?	4_episode#27#third_7.mp3
+4_episode	28	third_8	자녀가 있다면 총 몇명을 낳으셨나요?	4_episode#28#third_8.mp3
+4_episode	29	forth_1	40대 이후에 가진 취미생활이 있으신가요?	4_episode#29#forth_1.mp3
+4_episode	30	forth_2	40대 이후에 살던 곳은 어디인가요?	4_episode#30#forth_2.mp3
+4_episode	31	forth_3	회사를 다니셨다면, 인정 받았던 일이 있으신가요?	4_episode#31#forth_3.mp3
+4_episode	32	forth_4	자녀가 사랑스러웠던 일화가 있으신가요?	4_episode#32#forth_4.mp3
+4_episode	33	forth_5	자녀가 해준 기억 남는 선물이 있으신가요? 	4_episode#33#forth_5.mp3
+4_episode	34	fifth_1	새롭게 세우고 싶은 목표가 있으신가요?	4_episode#34#fifth_1.mp3
+4_episode	35	fifth_2	요즘 가장 즐겁게 보는 티비 프로그램은 무엇인가요?	4_episode#35#fifth_2.mp3
+4_episode	36	fifth_3	꼭 가보고 싶은 여행지가 있으신가요?	4_episode#36#fifth_3.mp3
+4_episode	37	fifth_4	꼭 갖고싶은 물건이 있으신가요?	4_episode#37#fifth_4.mp3
+4_episode	38	fifth_5	나에게 가장 힘이 되어주는 사람은 누구인가요?	4_episode#38#fifth_5.mp3
+4_episode	39	fifth_6	손주가 있다면, 몇 명 있나요?	4_episode#39#fifth_6.mp3
+4_episode	40	fifth_7	손주가 있다면, 자랑을 좀 해주세요. 	4_episode#40#fifth_7.mp3

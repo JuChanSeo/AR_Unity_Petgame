@@ -26,6 +26,7 @@ public class Contents3 : MonoBehaviour
     Petctrl petctrl_script;
     bgm_player bgm_player_;
     Player_statu player;
+    Logger logger_script;
     float time_remain;
     int level;//나중에 다른데에서 부터 받아온다
     int cnt_answer;
@@ -56,6 +57,7 @@ public class Contents3 : MonoBehaviour
         }
         cnt_answer = 0;
         petctrl_script = GameObject.Find("Scripts").GetComponent<Petctrl>();
+        logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
         time_remain = 0;
@@ -104,6 +106,7 @@ public class Contents3 : MonoBehaviour
 
     public void reshow_bt_clicked()
     {
+        logger_script.logger_master.insert_data("목욕하기 게임 다시보기 버튼 클릭");
         time_remain = 10f;
         reshow_bt.SetActive(false);
         //흩뿌려진 샴푸병 없애기
@@ -159,6 +162,7 @@ public class Contents3 : MonoBehaviour
 
     public void bath_button_clicked()
     {
+        logger_script.logger_master.insert_data("게임 시작. 목욕하기 게임 시작버튼 클릭");
         c3_flag = true;
         petctrl_script.not_move_pet = true;
         //bt_face.SetActive(false);
@@ -322,10 +326,11 @@ public class Contents3 : MonoBehaviour
                 cnt_false = 0;
                 clickedobj.SetActive(false);
                 //bottles[cnt_answer].sprite = bottles_sprite[color_to_num[clicked_bt_name]];//정답을 맞추면 원래 색깔대로 바뀐다
-                if(cnt_answer == 3)
+                if (cnt_answer == 3)
                 {
                     if(success_flag)
                     {
+                        logger_script.logger_master.insert_data($"샴푸병 게임 성공!");
                         player.change_statu(0, -0.03f, 0.03f, 0.01f);
                         time_remain_text.text = "축하드립니다 모두 맞추셨습니다!";
                         petctrl_script.set_text_speechBubble("샴푸병을 모두\n다 모았습니다!");
@@ -336,6 +341,7 @@ public class Contents3 : MonoBehaviour
                     }
                     else
                     {
+                        logger_script.logger_master.insert_data($"오답 갯수 5개 이상. 목욕하기 게임 실패");
                         petctrl_script.set_text_speechBubble("다음에 다시\n도전해볼까요?");
                         Invoke("re_init", 5f);
                     }
@@ -345,6 +351,7 @@ public class Contents3 : MonoBehaviour
                 {
                     if(success_flag)
                     {
+                        logger_script.logger_master.insert_data($"정답. 맞춘 샴푸병 갯수:{cnt_answer}");
                         petctrl_script.set_text_speechBubble("잘 맞추셨어요!");
                         bgm_player_.success_sound_excute();
                     }
@@ -355,6 +362,7 @@ public class Contents3 : MonoBehaviour
                 cnt_false++;
                 if(cnt_false == 5)
                 {
+                    logger_script.logger_master.insert_data($"오답 갯수 5개 이상. 목욕하기 게임 실패");
                     petctrl_script.set_text_speechBubble("다른 병을\n골라볼까요?");
                     cnt_false = 0;
                     success_flag = false;
@@ -369,6 +377,7 @@ public class Contents3 : MonoBehaviour
                 }
                 else
                 {
+                    logger_script.logger_master.insert_data($"오답. 오답 갯수:{cnt_false}");
                     time_remain_text.text = "다시 골라볼까요?";
                     petctrl_script.pet_reaction_false();
                     bgm_player_.fail_sound_excute();
@@ -390,6 +399,7 @@ public class Contents3 : MonoBehaviour
                 {
                     if (success_flag)
                     {
+                        logger_script.logger_master.insert_data($"샴푸병 게임 성공!");
                         player.change_statu(0, -0.04f, 0.04f, 0.02f);
                         time_remain_text.text = "축하드립니다 모두 맞추셨습니다!";
                         petctrl_script.set_text_speechBubble("샴푸병을 모두\n다 모았습니다!");
@@ -400,6 +410,7 @@ public class Contents3 : MonoBehaviour
                     }
                     else
                     {
+                        logger_script.logger_master.insert_data($"오답 갯수 5개 이상. 목욕하기 게임 실패");
                         petctrl_script.set_text_speechBubble("다음에 다시\n도전해볼까요?");
                         Invoke("re_init", 5f);
                     }
@@ -409,6 +420,7 @@ public class Contents3 : MonoBehaviour
                 {
                     if (success_flag)
                     {
+                        logger_script.logger_master.insert_data($"정답. 맞춘 샴푸병 갯수:{cnt_answer}");
                         petctrl_script.set_text_speechBubble("잘 맞추셨어요!");
                         bgm_player_.success_sound_excute();
                     }
@@ -419,6 +431,7 @@ public class Contents3 : MonoBehaviour
                 cnt_false++;
                 if (cnt_false == 5)
                 {
+                    logger_script.logger_master.insert_data($"오답 갯수 5개 이상. 목욕하기 게임 실패");
                     petctrl_script.set_text_speechBubble("다른 병을\n골라볼까요?");
                     cnt_false = 0;
                     success_flag = false;
@@ -432,6 +445,7 @@ public class Contents3 : MonoBehaviour
                 }
                 else
                 {
+                    logger_script.logger_master.insert_data($"오답. 오답 갯수:{cnt_false}");
                     time_remain_text.text = "다시 골라볼까요?";
                     petctrl_script.pet_reaction_false();
                     bgm_player_.fail_sound_excute();
@@ -453,6 +467,7 @@ public class Contents3 : MonoBehaviour
                 {
                     if (success_flag)
                     {
+                        logger_script.logger_master.insert_data($"샴푸병 게임 성공!");
                         player.change_statu(0, -0.05f, 0.05f, 0.03f);
                         time_remain_text.text = "축하드립니다 모두 맞추셨습니다!";
                         petctrl_script.set_text_speechBubble("샴푸병을 모두\n다 모았습니다!");
@@ -463,6 +478,7 @@ public class Contents3 : MonoBehaviour
                     }
                     else
                     {
+                        logger_script.logger_master.insert_data($"오답 갯수 5개 이상. 목욕하기 게임 실패");
                         petctrl_script.set_text_speechBubble("다음에 다시\n도전해볼까요?");
                         Invoke("re_init", 5f);
                     }
@@ -472,6 +488,7 @@ public class Contents3 : MonoBehaviour
                 {
                     if (success_flag)
                     {
+                        logger_script.logger_master.insert_data($"정답. 맞춘 샴푸병 갯수:{cnt_answer}");
                         petctrl_script.set_text_speechBubble("잘 맞추셨어요!");
                         bgm_player_.success_sound_excute();
                     }
@@ -482,6 +499,7 @@ public class Contents3 : MonoBehaviour
                 cnt_false++;
                 if (cnt_false == 5)
                 {
+                    logger_script.logger_master.insert_data($"오답 갯수 5개 이상. 목욕하기 게임 실패");
                     petctrl_script.set_text_speechBubble("다른 병을\n골라볼까요?");
                     cnt_false = 0;
                     success_flag = false;
@@ -495,6 +513,7 @@ public class Contents3 : MonoBehaviour
                 }
                 else
                 {
+                    logger_script.logger_master.insert_data($"오답. 오답 갯수:{cnt_false}");
                     time_remain_text.text = "다시 골라볼까요?";
                     petctrl_script.pet_reaction_false();
                     bgm_player_.fail_sound_excute();
@@ -508,6 +527,7 @@ public class Contents3 : MonoBehaviour
 
     public void re_init()
     {
+        logger_script.logger_master.insert_data("게임 종료. 목욕하기 게임 종료버튼 클릭");
         c3_flag = false;
         time_remain_text.text = "";
         petctrl_script.not_move_pet = false;

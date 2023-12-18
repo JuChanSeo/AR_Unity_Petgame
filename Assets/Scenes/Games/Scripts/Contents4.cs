@@ -25,6 +25,7 @@ public class Contents4 : MonoBehaviour
     Vector3 org_position;
     bgm_player bgm_player_;
     Player_statu player;
+    Logger logger_script;
 
     bool track_flag;
     bool return_to_org;
@@ -41,6 +42,7 @@ public class Contents4 : MonoBehaviour
         touch_cnt_pet = 0;
         lastTouchTime = Time.time;
         petctrl_script = GameObject.Find("Scripts").GetComponent<Petctrl>();
+        logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
 
@@ -76,6 +78,7 @@ public class Contents4 : MonoBehaviour
                     {
                         if (hit.transform.name.StartsWith("Pome"))
                         {
+                            logger_script.logger_master.insert_data("강아지 점프 애니메이션 실행");
                             anim.Play("002_Ball_Jump");
                             bgm_player_.jump_sound_excute();
                         }
@@ -89,6 +92,7 @@ public class Contents4 : MonoBehaviour
                         Debug.Log(anim.GetCurrentAnimatorStateInfo(0));
                         if (touch_cnt_pet > 50 && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
                         {
+                            logger_script.logger_master.insert_data("강아지 애교부리기 애니메이션 실행");
                             anim.Play("067_Idle_Blend_LieOnBack");
                             petctrl_script.heart_effect_true();
                         }
@@ -117,6 +121,7 @@ public class Contents4 : MonoBehaviour
                         touch_cnt = 0;
                         if (copyed_ball == null && copyed_ball_showup.activeSelf == true)
                         {
+                            logger_script.logger_master.insert_data("강아지 놀아주기용 공 던지기 실행");
                             copyed_ball = Instantiate(ball, ray.origin, Quaternion.identity);
                             var rigidbody = copyed_ball.GetComponent<Rigidbody>();
                             rigidbody.velocity = ray.direction * 3;
@@ -156,6 +161,7 @@ public class Contents4 : MonoBehaviour
 
     public void ballplay_bt_clicked()
     {
+        logger_script.logger_master.insert_data("강아지 공던지기 버튼 클릭");
         content4_panel.SetActive(false);
         copyed_ball_showup.SetActive(true);
 
@@ -201,6 +207,7 @@ public class Contents4 : MonoBehaviour
 
     public void play_bt_clicked()
     {
+        logger_script.logger_master.insert_data("게임 시작. 놀아주기 게임 시작 버튼 클릭");
         content4_panel.SetActive(true);
         bt_picture.SetActive(false);
         bt_set.SetActive(false);
@@ -211,7 +218,8 @@ public class Contents4 : MonoBehaviour
 
     public void re_init()
     {
-        if(copyed_ball != null)
+        logger_script.logger_master.insert_data("게임 종. 놀아주기 게임 종료 버튼 클릭");
+        if (copyed_ball != null)
         {
             Destroy(copyed_ball);
             copyed_ball = null;
