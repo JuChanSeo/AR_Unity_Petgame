@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventory_UI;
     public GameObject sale_popup;
     public TMPro.TMP_Text coin_text;
+    public GameObject explain_panel;
     List<string> item_names = new List<string>();
 
     Vector2 Center_device;
@@ -117,9 +118,12 @@ public class Inventory : MonoBehaviour
     {
         if(inventory_UI.gameObject.activeSelf == false)
         {
-            logger_script.logger_master.insert_data("인벤토리 버튼 클릭");
             inventory_UI.SetActive(true);
         }
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel, 10f);
+
+        logger_script.logger_master.insert_data("인벤토리 버튼 클릭");
     }
 
     public void exit_bt_clicked()
@@ -224,20 +228,22 @@ public class Inventory : MonoBehaviour
             inventory_UI.SetActive(false);
             if(clickedObj.CompareTag("item_anim"))
             {
-                logger_script.logger_master.insert_data($"인벤토리 애니메이션 실행: {clickedObj.name}");
                 //Debug.Log($"인벤토리 애니메이션 실행: {clickedObj.name}");
                 petctrl_script.play_anim_and_idel(clickedObj.name);
+                logger_script.logger_master.insert_data($"인벤토리 애니메이션 실행: {clickedObj.name}");
             }
             else if(clickedObj.CompareTag("item_obj"))
             {
-                logger_script.logger_master.insert_data($"인벤토리 아이템 배치: {clickedObj.name}");
                 flag_scan_mode = true;
                 //copyed_obj = Instantiate(GameObject.Find(clickedObj.name));
                 //copyed_obj.SetActive(true);
                 petctrl_script.not_move_pet = true;
+                logger_script.logger_master.insert_data($"인벤토리 아이템 배치: {clickedObj.name}");
             }
             //뭔가 다른걸 넣어보자, 즉 그 아이템으로 무엇을 할것인지 정해서 넣어보자
         }
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel);
     }
 
     //네, 구매할게요 버튼을 클릭할 경우
@@ -258,8 +264,8 @@ public class Inventory : MonoBehaviour
                     }
                     else
                     {
-                        logger_script.logger_master.insert_data("구매 실패. 코인 부족");
                         Debug.Log("돈이 부족해서 구매가 안됩니다");
+                        logger_script.logger_master.insert_data("구매 실패. 코인 부족");
                     }
                     PlayerPrefs.SetInt("Coin", player_statu_script.Coin);
                 }

@@ -27,6 +27,7 @@ public class Contents3 : MonoBehaviour
     bgm_player bgm_player_;
     Player_statu player;
     Logger logger_script;
+    random_play random_play_script;
     float time_remain;
     int level;//나중에 다른데에서 부터 받아온다
     int cnt_answer;
@@ -60,6 +61,7 @@ public class Contents3 : MonoBehaviour
         logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
+        random_play_script = GameObject.Find("Scripts").GetComponent<random_play>();
         time_remain = 0;
         content3_panel.SetActive(false);
         reshow_bt.SetActive(false);
@@ -534,6 +536,8 @@ public class Contents3 : MonoBehaviour
         content3_panel.SetActive(false);
         petctrl_script.not_move_pet = false;
         cnt_answer = 0;
+        random_play_script.time_remain = random_play_script.time_max;
+        random_play_script.game_start_flag = true;
         //bt_face.SetActive(true);
         bt_picture.SetActive(true);
         bt_set.SetActive(true);

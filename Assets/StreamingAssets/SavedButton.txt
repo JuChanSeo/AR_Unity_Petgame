@@ -1,0 +1,77 @@
+배우자 자녀 이웃 SceneNumber : 3_background QuestionNumber : 63 Question : 어려움이 있을 때 도움을 요청할 사람이 있나요? AudioFileName : 3_background#63#people2
+문화 예술 정보화 교육 SceneNumber : 3_background QuestionNumber : 91 Question : 교육에 참여하신 적이 있으시면 어떤 영역을 배우셨나요? AudioFileName : 3_background#91#daily8
+광양 제주 대구 SceneNumber : 3_background QuestionNumber : 49 Question : 꽃 구경하러 가보신 곳이 있나요? AudioFileName : 3_background#49#spring_flower7
+직업 교육 문화 예술 정보화 교육 SceneNumber : 3_background QuestionNumber : 91 Question : 교육에 참여하신 적이 있으시면 어떤 영역을 배우셨나요? AudioFileName : 3_background#91#daily8
+과일 갈비찜 SceneNumber : 3_background QuestionNumber : 5 Question : 추석에 주로 어떤 음식을 먹었나요? AudioFileName : 3_background#5#fall_ch1
+널뛰기 윷놀이 연날리기 화투 SceneNumber : 3_background QuestionNumber : 22 Question : 설날에 친지들이 모이면 어떤 놀이를 하셨나요? AudioFileName : 3_background#22#winter_se2
+태극기 검정깃발 성조기 무지개깃발 SceneNumber : 3_background QuestionNumber : 54 Question : 삼일절에는 보통 무엇을 달아놓지요? AudioFileName : 3_background#54#spring_event4
+겨울 SceneNumber : 3_background QuestionNumber : 29 Question : 어떤 계절을 좋아하시나요? AudioFileName : 3_background#29#season1
+전화할 때 SceneNumber : 3_background QuestionNumber : 103 Question : 하루 중 가장 행복할 때는 언제인가요? AudioFileName : 3_background#103#daily20
+냉면 콩국수 쭈꾸미 SceneNumber : 3_background QuestionNumber : 69 Question : 좋아하는 여름 음식은 무엇인가요? AudioFileName : 3_background#69#summer_food2
+여름 겨울 SceneNumber : 3_background QuestionNumber : 43 Question : 벚꽃은 어떤 계절에 활짝 필까요? AudioFileName : 3_background#43#spring_flower1
+강아지 SceneNumber : 3_background QuestionNumber : 46 Question : 개나리를 보면 생각나는 동물이 있나요? AudioFileName : 3_background#46#spring_flower4
+조항조 SceneNumber : 3_background QuestionNumber : 37 Question : 님과함께라는 노래로 유명했던 가수는 누구인가요? AudioFileName : 3_background#37#music4
+광복 SceneNumber : 3_background QuestionNumber : 53 Question : 삼일절은 무엇을 기념하는 날인가요? AudioFileName : 3_background#53#spring_event3
+넓은바다 넓은바다 시원함 시원함 시원함 넓은바다 SceneNumber : 3_background QuestionNumber : 70 Question : 바다의 어떤 점을 좋아하시나요? AudioFileName : 3_background#70#summer_place1
+산책 노래부르기 SceneNumber : 3_background QuestionNumber : 101 Question : 나만의 스트레스 해소법은 무엇인가요? AudioFileName : 3_background#101#daily18
+꽃떡 꽃떡 SceneNumber : 3_background QuestionNumber : 56 Question : 봄에 먹는 어떤 떡을 좋아하시나요? AudioFileName : 3_background#56#spring_food1
+4월 8일 5월 5일 SceneNumber : 3_background QuestionNumber : 51 Question : 부처님오신날은 음력 몇월 며칠일까요? AudioFileName : 3_background#51#spring_event1
+건강 유지 SceneNumber : 3_background QuestionNumber : 87 Question : 일을 하시는 이유는 무엇인가요? AudioFileName : 3_background#87#daily4
+스트레칭 스트레칭 휴대폰 SceneNumber : 3_background QuestionNumber : 84 Question : 아침에 일어나서 먼저 하는 일은 무엇인가요? AudioFileName : 3_background#84#daily1
+빨강 초록 SceneNumber : 3_background QuestionNumber : 64 Question : 좋아하는 색깔은 무엇인가요? AudioFileName : 3_background#64#color1
+영화보기 SceneNumber : 3_background QuestionNumber : 105 Question : 어떤 취미를 가지고 있나요? AudioFileName : 3_background#105#hobby1
+10월 3일 SceneNumber : 3_background QuestionNumber : 52 Question : 삼일절은 몇월 며칠인가요? AudioFileName : 3_background#52#spring_event2
+유채꽃 SceneNumber : 3_background QuestionNumber : 47 Question : 봄에는 어떤 꽃이 피나요? AudioFileName : 3_background#47#spring_flower5
+생활을 누리기 위해 SceneNumber : 3_background QuestionNumber : 16 Question : 부부 또는 혼자서 사는 이유는 무엇인가요? AudioFileName : 3_background#16#family8
+동호회 SceneNumber : 3_background QuestionNumber : 107 Question : 취미와 관련된 그룹 활동에 참여하신 적이 있나요? AudioFileName : 3_background#107#hobby3
+밤 SceneNumber : 3_background QuestionNumber : 88 Question : 하루 중 어떤 시간을 좋아하나요? AudioFileName : 3_background#88#daily5
+한국영화 외국영화 SceneNumber : 3_background QuestionNumber : 76 Question : 한국영화와 외국영화 중 어떤 것을 좋아하나요? AudioFileName : 3_background#76#movie3
+기타 SceneNumber : 3_background QuestionNumber : 60 Question : 돌잡이에서 무엇을 잡았나요? AudioFileName : 3_background#60#event3
+제주도 SceneNumber : 3_background QuestionNumber : 73 Question : 기억에 남는 여행지는 어디인가요? AudioFileName : 3_background#73#travel2
+냉면 SceneNumber : 3_background QuestionNumber : 69 Question : 좋아하는 여름 음식은 무엇인가요? AudioFileName : 3_background#69#summer_food2
+송가인 SceneNumber : 3_background QuestionNumber : 35 Question : 가장 좋아하는 가수는 누구인가요? AudioFileName : 3_background#35#music2
+빈잔 물레방아도는데 애국가 물레방아도는데 애국가 물레방아도는데 SceneNumber : 3_background QuestionNumber : 38 Question : 나훈아가 부른 노래는 무엇일까요? AudioFileName : 3_background#38#music5
+사회복지 SceneNumber : 3_background QuestionNumber : 92 Question : 최근 참여한 자원봉사활동이 있으신가요? AudioFileName : 3_background#92#daily9
+자녀 SceneNumber : 3_background QuestionNumber : 83 Question : 누가 해 준 요리를 좋아하시나요? AudioFileName : 3_background#83#food3
+겨울 SceneNumber : 3_background QuestionNumber : 29 Question : 어떤 계절을 좋아하시나요? AudioFileName : 3_background#29#season1
+10월 3일 10월 3일 10월 3일 SceneNumber : 3_background QuestionNumber : 52 Question : 삼일절은 몇월 며칠인가요? AudioFileName : 3_background#52#spring_event2
+밤 SceneNumber : 3_background QuestionNumber : 88 Question : 하루 중 어떤 시간을 좋아하나요? AudioFileName : 3_background#88#daily5
+널뛰기 화투 SceneNumber : 3_background QuestionNumber : 22 Question : 설날에 친지들이 모이면 어떤 놀이를 하셨나요? AudioFileName : 3_background#22#winter_se2
+건강이 좋지 않아서 기관이 멀어서 SceneNumber : 3_background QuestionNumber : 90 Question : 최근 여가 활동을 하지 않으셨다면 이유는 무엇인가요? AudioFileName : 3_background#90#daily7
+일주일에 5번 일주일에 1번 SceneNumber : 3_background QuestionNumber : 78 Question : 운동은 얼마나 자주 하나요? AudioFileName : 3_background#78#exercise2
+제주도 강원도 전라도 SceneNumber : 3_background QuestionNumber : 73 Question : 기억에 남는 여행지는 어디인가요? AudioFileName : 3_background#73#travel2
+미워도 다시 한 번 집으로 SceneNumber : 3_background QuestionNumber : 75 Question : 가장 기억에 남는 영화는 무엇인가요? AudioFileName : 3_background#75#movie2
+자녀와의 접촉 확대 젊은 세대와의 교류 확대 SceneNumber : 3_background QuestionNumber : 15 Question : 손자녀와 교류로 경험하는 바는 무엇인가요? AudioFileName : 3_background#15#family7
+정치사회 동창회 SceneNumber : 3_background QuestionNumber : 93 Question : 최근 참여한 단체활동이 있으신가요? AudioFileName : 3_background#93#daily10
+5월 5일 SceneNumber : 3_background QuestionNumber : 51 Question : 부처님오신날은 음력 몇월 며칠일까요? AudioFileName : 3_background#51#spring_event1
+자녀와의 접촉 확대 SceneNumber : 3_background QuestionNumber : 15 Question : 손자녀와 교류로 경험하는 바는 무엇인가요? AudioFileName : 3_background#15#family7
+기타 SceneNumber : 3_background QuestionNumber : 36 Question : 다룰 수 있는 악기가 있으신가요? AudioFileName : 3_background#36#music3
+중식 SceneNumber : 3_background QuestionNumber : 81 Question : 좋아하는 음식 종류는 무엇인가요? AudioFileName : 3_background#81#food1
+스릴러 SceneNumber : 3_background QuestionNumber : 74 Question : 좋아하는 영화 장르는 무엇인가요? AudioFileName : 3_background#74#movie1
+행복 SceneNumber : 3_background QuestionNumber : 59 Question : 어릴때 보름달을 보며 어떤 소원을 비셨나요? AudioFileName : 3_background#59#event2
+생선 과일 송편 SceneNumber : 3_background QuestionNumber : 20 Question : 차례상에는 주로 어떤 음식을 올렸나요? AudioFileName : 3_background#20#winter_me3
+수영 수영 등산 SceneNumber : 3_background QuestionNumber : 77 Question : 좋아하는 운동은 무엇인가요? AudioFileName : 3_background#77#exercise1
+대구 광양 SceneNumber : 3_background QuestionNumber : 49 Question : 꽃 구경하러 가보신 곳이 있나요? AudioFileName : 3_background#49#spring_flower7
+22시 24시 SceneNumber : 3_background QuestionNumber : 99 Question : 보통 몇시에 주무시나요? AudioFileName : 3_background#99#daily16
+교양 스포츠 SceneNumber : 3_background QuestionNumber : 1 Question : 즐겨보는 TV프로그램은 어떤 것인가요? AudioFileName : 3_background#1#TV1
+흐림 SceneNumber : 3_background QuestionNumber : 33 Question : 좋아하는 날씨는 무엇인가요? AudioFileName : 3_background#33#weather1
+손녀 SceneNumber : 3_background QuestionNumber : 12 Question : 따로 살고 있는 손자녀가 있나요? AudioFileName : 3_background#12#family4
+제헌 광복 SceneNumber : 3_background QuestionNumber : 53 Question : 삼일절은 무엇을 기념하는 날인가요? AudioFileName : 3_background#53#spring_event3
+일식 SceneNumber : 3_background QuestionNumber : 81 Question : 좋아하는 음식 종류는 무엇인가요? AudioFileName : 3_background#81#food1
+교통수단 부족 SceneNumber : 3_background QuestionNumber : 109 Question : 외출할 때 가장 불편한 점은 무엇인가요? AudioFileName : 3_background#109#environ2
+옷 사기 SceneNumber : 3_background QuestionNumber : 41 Question : 돈이 생기면 하고싶은 것은 무엇인가요? AudioFileName : 3_background#41#thing2
+나훈아 SceneNumber : 3_background QuestionNumber : 37 Question : 님과함께라는 노래로 유명했던 가수는 누구인가요? AudioFileName : 3_background#37#music4
+올림픽 SceneNumber : 3_background QuestionNumber : 58 Question : 새마을운동과 관련있는 것을 골라보세요 AudioFileName : 3_background#58#event1
+동창회 SceneNumber : 3_background QuestionNumber : 93 Question : 최근 참여한 단체활동이 있으신가요? AudioFileName : 3_background#93#daily10
+진달래 SceneNumber : 3_background QuestionNumber : 44 Question : 어떤 봄꽃을 가장 좋아하시나요? AudioFileName : 3_background#44#spring_flower2
+연날리기 SceneNumber : 3_background QuestionNumber : 22 Question : 설날에 친지들이 모이면 어떤 놀이를 하셨나요? AudioFileName : 3_background#22#winter_se2
+파랑 SceneNumber : 3_background QuestionNumber : 64 Question : 좋아하는 색깔은 무엇인가요? AudioFileName : 3_background#64#color1
+송가인 SceneNumber : 3_background QuestionNumber : 2 Question : 좋아하는 연예인은 누구인가요? AudioFileName : 3_background#2#TV2
+버스 타고 내리기 교통수단 부족 SceneNumber : 3_background QuestionNumber : 109 Question : 외출할 때 가장 불편한 점은 무엇인가요? AudioFileName : 3_background#109#environ2
+여행 SceneNumber : 3_background QuestionNumber : 65 Question : 가장 기뻤을 때는 언제였나요? AudioFileName : 3_background#65#time1
+등산 수영 SceneNumber : 3_background QuestionNumber : 77 Question : 좋아하는 운동은 무엇인가요? AudioFileName : 3_background#77#exercise1
+구름많음 비 맑음 SceneNumber : 3_background QuestionNumber : 33 Question : 좋아하는 날씨는 무엇인가요? AudioFileName : 3_background#33#weather1
+칠교놀이 낙화놀이 SceneNumber : 3_background QuestionNumber : 18 Question : 4개의 나무막대기를 던져서 말을 움직이는 놀이는 무엇인가요? AudioFileName : 3_background#18#winter_me1
+고양이 SceneNumber : 3_background QuestionNumber : 39 Question : 좋아하는 동물은 무엇인가요? AudioFileName : 3_background#39#animal1
+콩국수 SceneNumber : 3_background QuestionNumber : 69 Question : 좋아하는 여름 음식은 무엇인가요? AudioFileName : 3_background#69#summer_food2
+닭죽 호박죽 전복죽 SceneNumber : 3_background QuestionNumber : 24 Question : 동짓날에는 어떤 죽을 먹지요? AudioFileName : 3_background#24#winter_food1

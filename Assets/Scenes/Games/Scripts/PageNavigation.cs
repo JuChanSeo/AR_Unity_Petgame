@@ -21,7 +21,7 @@ public class PageNavigation : MonoBehaviour
     public void Menu_CA()
     {
         butoon_effect();
-        SceneManager.LoadScene("10_Menu");
+        SceneManager.LoadScene("20_Emotion");
     }
 
     public void CA_tutorial()

@@ -10,6 +10,7 @@ public class Contents2 : MonoBehaviour
 {
     Petctrl petctrl_script;
     Logger logger_script;
+    random_play random_play_script;
 
     public GameObject reshow_bt;
     public GameObject linegenerator;
@@ -47,6 +48,7 @@ public class Contents2 : MonoBehaviour
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
         logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
+        random_play_script = GameObject.Find("Scripts").GetComponent<random_play>();
 
         list_answer_set = new List<List<string>>{
             new List<string> {"dot1", "dot2", "dot5", "dot7"},//4-1
@@ -274,6 +276,7 @@ public class Contents2 : MonoBehaviour
 
 
     }
+
     protected IEnumerator Preparevid()
     {
         video.Prepare();
@@ -365,6 +368,9 @@ public class Contents2 : MonoBehaviour
         logger_script.logger_master.insert_data("잠자기 게임 종료");
         c2_flag = false;
         petctrl_script.not_move_pet = false;
+        random_play_script.time_remain = random_play_script.time_max;
+        random_play_script.game_start_flag = true;
+
         //bt_face.SetActive(true);
         bt_picture.SetActive(true);
         bt_set.SetActive(true);

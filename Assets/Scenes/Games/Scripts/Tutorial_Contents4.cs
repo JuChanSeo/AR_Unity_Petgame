@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Video;
+using UnityEngine.UI;
 
 public class Tutorial_Contents4 : MonoBehaviour
 {
@@ -25,14 +27,21 @@ public class Tutorial_Contents4 : MonoBehaviour
     Vector3 org_position;
     bgm_player bgm_player_;
     Player_statu player;
+    tutorial_random_play tutorial_random_play_script;
+    public VideoPlayer video;
+    public RawImage vid_screen;
 
     bool track_flag;
     bool return_to_org;
 
-    int cnt_next_bt_clicked;
+    public int cnt_next_bt_clicked;
     public GameObject tutorial_panel;
     public GameObject tutorial_bt;
     public TMP_Text tutorial_msg;
+
+    public TextMeshProUGUI time_text;
+    float time;
+    bool execute_next_bt;
 
     // Start is called before the first frame update
     void Start()
@@ -46,18 +55,39 @@ public class Tutorial_Contents4 : MonoBehaviour
         petctrl_script = GameObject.Find("Scripts_tutorial").GetComponent<Petctrl>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
+        tutorial_random_play_script = GameObject.Find("Scripts_tutorial").GetComponent<tutorial_random_play>();
 
         //Debug.Log("Ball name: " + ball.transform.name);
 
+        time = 15;
         cnt_next_bt_clicked = 0;
         tutorial_panel.SetActive(false);
         tutorial_bt.SetActive(false);
+        vid_screen.enabled = false;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        time_text.text = ((int)(15 - (time % 60))).ToString();
+        if (time < 15f)
+        {
+            time += Time.deltaTime;
+        }
+        else
+        {
+            if (execute_next_bt)
+            {
+                if (cnt_next_bt_clicked == 1)
+                {
+                    Debug.Log("logging:\tcnt_next_bt_clicked: " + cnt_next_bt_clicked);
+                    execute_next_bt = false;
+                    intimity_next_bt_clicked();
+                }
+            }
+        }
+
         if (!c4_flag) return;
         if (content4_panel.activeSelf == false && touch_cnt == 0)
         {
@@ -166,6 +196,28 @@ public class Tutorial_Contents4 : MonoBehaviour
             move_to_point(goal_position);
     }
 
+    protected IEnumerator Preparevid()
+    {
+        video.Prepare();
+
+        while (!video.isPrepared)
+        {
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+
+        vid_screen.enabled = true;
+        vid_screen.texture = video.texture;
+        video.Play();
+
+    }
+
+    void null_video_screen()
+    {
+        vid_screen.texture = null;
+        vid_screen.enabled = false;
+    }
 
     public void intimity_next_bt_clicked()
     {
@@ -178,6 +230,9 @@ public class Tutorial_Contents4 : MonoBehaviour
             tutorial_bt.SetActive(true);
             tutorial_msg.text = "강아지와 놀아볼까요?";
             cnt_next_bt_clicked++;
+            if (time_text.gameObject.activeSelf != true) time_text.gameObject.SetActive(true);
+            time = 0;
+            execute_next_bt = true;
         }
         else if(cnt_next_bt_clicked == 1)
         {
@@ -185,41 +240,64 @@ public class Tutorial_Contents4 : MonoBehaviour
             play_bt_clicked();
             tutorial_msg.text = "강아지를 쓰다듬어주세요!\n강아지가 좋아할거에요!";
             cnt_next_bt_clicked++;
+            time_text.gameObject.SetActive(false);
+            video.url = Application.streamingAssetsPath + "/" + "int_1.mp4";
+            if (vid_screen != null && video != null)
+            {
+                Debug.Log("prepard_vid 실행");
+                StartCoroutine(Preparevid());
+            }
         }
         else if (cnt_next_bt_clicked == 2)
         {
             tutorial_msg.text = "강아지가 이렇게나 좋아하네요!";
             cnt_next_bt_clicked++;
             Invoke("intimity_next_bt_clicked", 7f);
+            null_video_screen();
         }
         else if (cnt_next_bt_clicked == 3)
         {
             tutorial_msg.text = "강이지를 빠르게 두번 터치해주세요!";
             cnt_next_bt_clicked++;
+            video.url = Application.streamingAssetsPath + "/" + "int_2.mp4";
+            if (vid_screen != null && video != null)
+            {
+                Debug.Log("prepard_vid 실행");
+                StartCoroutine(Preparevid());
+            }
         }
         else if (cnt_next_bt_clicked == 4)
         {
             tutorial_msg.text = "강아지를 빠르게 두번 터치하면 제자리에서 점프를 하네요!";
             cnt_next_bt_clicked++;
             Invoke("intimity_next_bt_clicked", 5f);
+            null_video_screen();
         }
         else if (cnt_next_bt_clicked == 5)
         {
             content4_panel.SetActive(true);
             tutorial_msg.text = "공놀이를 해볼까요?\n공던지고 놀기 버튼을 눌러주세요!";
             cnt_next_bt_clicked++;
+
         }
 
         else if (cnt_next_bt_clicked == 6)
         {
             tutorial_msg.text = "공을 한번 던져볼까요?\n공을 던지고 싶은 곳에 끌어다 놓아주세요!";
             cnt_next_bt_clicked++;
+            video.url = Application.streamingAssetsPath + "/" + "int_3.mp4";
+            if (vid_screen != null && video != null)
+            {
+                Debug.Log("prepard_vid 실행");
+                StartCoroutine(Preparevid());
+            }
         }
         else if (cnt_next_bt_clicked == 7)
         {
             tutorial_msg.text = "강아지가 공을 주우러 갈거에요!";
             Invoke("intimity_next_bt_clicked", 5f);
             cnt_next_bt_clicked++;
+            null_video_screen();
         }
         else if (cnt_next_bt_clicked == 8)
         {
@@ -306,6 +384,8 @@ public class Tutorial_Contents4 : MonoBehaviour
         petctrl_script.not_move_pet = false;
         return_to_org = false;
         c4_flag = false;
+        tutorial_random_play_script.time_remain = tutorial_random_play_script.time_max;
+        tutorial_random_play_script.game_start_flag = true;
 
 
 

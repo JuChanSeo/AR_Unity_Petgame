@@ -26,6 +26,7 @@ public class Contents4 : MonoBehaviour
     bgm_player bgm_player_;
     Player_statu player;
     Logger logger_script;
+    random_play random_play_script;
 
     bool track_flag;
     bool return_to_org;
@@ -45,6 +46,7 @@ public class Contents4 : MonoBehaviour
         logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
+        random_play_script = GameObject.Find("Scripts").GetComponent<random_play>();
 
         //Debug.Log("Ball name: " + ball.transform.name);
     }
@@ -232,6 +234,8 @@ public class Contents4 : MonoBehaviour
         petctrl_script.not_move_pet = false;
         return_to_org = false;
         c4_flag = false;
+        random_play_script.time_remain = random_play_script.time_max;
+        random_play_script.game_start_flag = true;
 
         int min_statu;
         min_statu = player.choose_higlight(); //enegry:0, fatigue:1, cleanliness:2, intimity:3

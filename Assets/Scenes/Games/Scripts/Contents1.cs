@@ -27,6 +27,7 @@ public class Contents1 : MonoBehaviour
     public GameObject bt_set;
     bgm_player bgm_player_;
     Player_statu player;
+    random_play random_play_script;
     int min_statu;
 
     int[] shuffle_idx_mixed;
@@ -46,6 +47,7 @@ public class Contents1 : MonoBehaviour
         logger_script = GameObject.Find("Scripts").GetComponent<Logger>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
+        random_play_script = GameObject.Find("Scripts").GetComponent<random_play>();
         level = player.Level_hungry;
         //level = 1;
         time_remain = 0;
@@ -344,7 +346,7 @@ public class Contents1 : MonoBehaviour
         {
             //randomly choose food from foods gameobject
             food_selected.Add(foods[shuffle_idx_org[i]]);
-            Debug.Log(food_selected[i].name);
+            Debug.Log($"level:{level}\t"+food_selected[i].name);
             if(level == 1)
             {
                 food_selected[i].transform.position = Camera.main.transform.position
@@ -440,8 +442,10 @@ public class Contents1 : MonoBehaviour
         cnt_corr = 0;
         cnt_false = 0;
         success_flag = true;
+        random_play_script.time_remain = random_play_script.time_max;
+        random_play_script.game_start_flag = true;
 
-        for(int i=0; i<foods.Count; i++)
+        for (int i=0; i<foods.Count; i++)
         {
             foods[i].SetActive(false);
         }

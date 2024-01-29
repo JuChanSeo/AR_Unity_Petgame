@@ -24,6 +24,7 @@ public class Tutorial_Contents3 : MonoBehaviour
     Petctrl petctrl_script;
     bgm_player bgm_player_;
     Player_statu player;
+    tutorial_random_play tutorial_random_play_script;
     float time_remain;
     int level;//나중에 다른데에서 부터 받아온다
     int cnt_answer;
@@ -31,16 +32,22 @@ public class Tutorial_Contents3 : MonoBehaviour
     Dictionary<string, int> color_to_num = new Dictionary<string, int>();
     public bool c3_flag;
 
-    int cnt_next_bath_bt_clicked;
+    public int cnt_next_bath_bt_clicked;
     int[] shuffled_idx;
     public GameObject tutorial_panel;
     public GameObject tutorial_bt;
     public TMP_Text tutorial_msg;
     public GameObject arrow_3d;
+    public GameObject touch_highlight;
+
+    public TextMeshProUGUI time_text;
+    float time;
+    bool execute_next_bt;
 
     // Start is called before the first frame update
     void Start()
     {
+        time = 15;
         color_to_num.Add("red", 1);
         color_to_num.Add("orange", 2);
         color_to_num.Add("yellow", 3);
@@ -56,6 +63,7 @@ public class Tutorial_Contents3 : MonoBehaviour
         petctrl_script = GameObject.Find("Scripts_tutorial").GetComponent<Petctrl>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
+        tutorial_random_play_script = GameObject.Find("Scripts_tutorial").GetComponent<tutorial_random_play>();
         time_remain = 0;
         content3_panel.SetActive(false);
         level = 1;
@@ -64,12 +72,38 @@ public class Tutorial_Contents3 : MonoBehaviour
         tutorial_panel.SetActive(false);
         tutorial_bt.SetActive(false);
         arrow_3d.SetActive(false);
+        touch_highlight.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        time_text.text = ((int)(15 - (time % 60))).ToString();
+        if (time < 15f)
+        {
+            time += Time.deltaTime;
+        }
+        else
+        {
+            if (execute_next_bt)
+            {
+                if (cnt_next_bath_bt_clicked == 1 || cnt_next_bath_bt_clicked == 2)
+                {
+                    Debug.Log("logging:\tcnt_next_bt_clicked: " + cnt_next_bath_bt_clicked);
+                    execute_next_bt = false;
+                    bath_next_bt_clicked();
+                }
+            }
+        }
+
         if (!c3_flag) return;
+
+        if (touch_highlight.activeSelf == true)
+        {
+            string answer_c = answer_seq_color[cnt_answer].Split("_")[1];
+            touch_highlight.transform.position = Camera.main.WorldToScreenPoint(bottle_3d[color_to_num[answer_c] - 1].transform.position);
+        }
 
 
         if (Input.touchCount > 0)
@@ -106,21 +140,28 @@ public class Tutorial_Contents3 : MonoBehaviour
             tutorial_bt.SetActive(true);
             tutorial_msg.text = "강아지를 씻겨볼까요?";
             cnt_next_bath_bt_clicked++;
+            if (time_text.gameObject.activeSelf != true) time_text.gameObject.SetActive(true);
+            time = 0;
+            execute_next_bt = true;
         }
         else if (cnt_next_bath_bt_clicked == 1)
         {
             tutorial_msg.text = "화면의 샴푸병 순서를 기억해주세요!";
             bath_button_clicked();
             cnt_next_bath_bt_clicked++;
+            time = 0;
+            execute_next_bt = true;
         }
         else if (cnt_next_bath_bt_clicked == 2)
         {
             arrow_3d.SetActive(true);
+            touch_highlight.SetActive(true);
             spread_bottle_3d();
             reset_to_empty();
             tutorial_bt.SetActive(false);
             tutorial_msg.text = "첫 번째 샴푸병을 골라주세요!";
             cnt_next_bath_bt_clicked++;
+            time_text.gameObject.SetActive(false);
         }
         else if (cnt_next_bath_bt_clicked == 3)
         {
@@ -140,6 +181,7 @@ public class Tutorial_Contents3 : MonoBehaviour
         else if (cnt_next_bath_bt_clicked == 5)
         {
             arrow_3d.SetActive(false);
+            touch_highlight.SetActive(false);
             tutorial_msg.text = "잘 하셨어요! 샴푸병을 모두 다 골랐어요!";
             cnt_next_bath_bt_clicked = 0;
             Invoke("re_init", 10f);
@@ -333,6 +375,8 @@ public class Tutorial_Contents3 : MonoBehaviour
         //bt_face.SetActive(true);
         bt_picture.SetActive(true);
         bt_set.SetActive(true);
+        tutorial_random_play_script.time_remain = tutorial_random_play_script.time_max;
+        tutorial_random_play_script.game_start_flag = true;
         for (int i = 0; i < 4; i++)
         {
             bottle_3d[i].SetActive(false);

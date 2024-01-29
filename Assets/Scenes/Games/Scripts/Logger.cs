@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 
 public class send_dic
 {
-    private string URL = "https://223.130.138.24.nip.io:31899/be.runtime/dev/v1/service/gameTypeB-2/test/pet";
+    private string URL = "https://223.130.138.24.nip.io:32163/be.runtime/dev/v1/service/gameTypeB-2/test/pet";
     //private string URL = "https://webhook.site/12733508-03cd-492b-a728-e290ad6fbe4d";
     Dictionary<string, string> data_in_class = new Dictionary<string, string>()
     {

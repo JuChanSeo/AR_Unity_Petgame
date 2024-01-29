@@ -9,8 +9,7 @@ using System.Text;
 using TMPro;
 using UnityEngine.Profiling;
 using System.Data.SqlTypes;
-//using UnityEditor;
-//using UnityEditor.iOS;
+using UnityEditor;
 
 
 public class SendDataEp : MonoBehaviour
@@ -19,12 +18,12 @@ public class SendDataEp : MonoBehaviour
     public string emotion;
     public string question;
     public string answer;
-
+    
     public string wav_name;
-    public string file;
-
+    public string file; 
+    
     public byte[] fileData;
-
+    
     void Start()
     {
         this.id = "null_id";
@@ -32,7 +31,7 @@ public class SendDataEp : MonoBehaviour
         this.question = "null_question";
         this.answer = "null_answer";
     }
-
+    
 
     // StartCoroutine(Upload());
     public void UpdateEmotion(string emotion)
@@ -48,23 +47,20 @@ public class SendDataEp : MonoBehaviour
         this.answer = answer;
     }
 
-    public void UpdateWAV(string wav_name, string file, byte[] fileData)
-    {
-        this.wav_name = wav_name;
-        this.file = file;
-        this.fileData = fileData;
-
+    public void UpdateWAV(string wav_name, string file, byte[] fileData){
+        this.wav_name= wav_name;
+        this.file=file;
+        this.fileData=fileData;
+       
     }
 
     public void Send()
     {
-        if (this.wav_name == null)
-        {
-            this.wav_name = "example_wav_name";
+        if(this.wav_name==null){
+            this.wav_name="example_wav_name";
         }
-        if (this.file == null)
-        {
-            this.file = "example.wav";
+        if(this.file==null){
+            this.file="example.wav";
         }
         // Debug.Log(this.id+this.emotion+this.question+this.answer+this.wav_name+this.file);
         StartCoroutine(Upload());
@@ -72,28 +68,29 @@ public class SendDataEp : MonoBehaviour
 
     IEnumerator Upload()
     {
-        if (this.answer == null)
-        {
-            this.answer = "empthy answer";
+        if(this.answer==null){
+            this.answer="empthy answer";
         }
-        string URL = "https://223.130.138.24.nip.io:31899/be.runtime/dev/v1/service/gameTypeB-2/test/episode";
+        string URL = "https://223.130.138.24.nip.io:32163/be.runtime/dev/v1/service/gameTypeB-2/test/episode";
         List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
-        // formData.Add(new MultipartFormDataSection("id", this.id));
-        this.id = PlayerPrefs.GetString("ID");
+        // this.id="id_string";
         // this.wav_name="dummy_example";
         // this.file="Assets/Resources/Dummy_example.wav";
         // byte[] fileData=File.ReadAllBytes(this.file);
 
-        // Debug.Log(this.id+this.emotion+this.question+this.answer+Path.GetFileName(this.file)+this.file);
+        if (this.emotion==null){
+            this.emotion="null_emotion";
+        }
+        Debug.Log(this.id+this.emotion+this.question+this.answer);
         formData.Add(new MultipartFormDataSection("user_id", this.id));
         formData.Add(new MultipartFormDataSection("emotion", this.emotion));
         formData.Add(new MultipartFormDataSection("question", this.question));
         formData.Add(new MultipartFormDataSection("answer", this.answer));
-        formData.Add(new MultipartFormDataSection("wav_name", this.wav_name));
+        // formData.Add(new MultipartFormDataSection("wav_name", this.wav_name));
         // formData.Add(new MultipartFormFileSection("file", fileData, Path.GetFileName(this.file), "audio/wav"));
-        formData.Add(new MultipartFormFileSection("file", fileData, this.wav_name, "audio/wav"));
-
-
+        // formData.Add(new MultipartFormFileSection("file", fileData, this.wav_name, "audio/wav"));
+        
+        
         using (UnityWebRequest request = UnityWebRequest.Post(URL, formData))
         {
             yield return request.SendWebRequest();

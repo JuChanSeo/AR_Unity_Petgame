@@ -16,6 +16,7 @@ public class Tutorial_Contents1 : MonoBehaviour
     public GameObject net;
     Petctrl petctrl_script;
     bgm_player bgm_player_;
+    tutorial_random_play tutorial_random_play_script;
     RaycastHit hit;
     Vector2 Center_device;
     int cnt_corr;
@@ -28,23 +29,32 @@ public class Tutorial_Contents1 : MonoBehaviour
     //Player_statu player;
     int min_statu;
 
+
    
     int level;
+    int cnt_answer;
 
-    int cnt_next_bt_clicked;
+    public int cnt_next_bt_clicked;
     public GameObject tutorial_panel;
     public GameObject tutorial_bt;
     public TMP_Text tutorial_msg;
     public GameObject arrow_3d;
+    public GameObject touch_highlight;
     int[] shuffled_idx;
+    public TextMeshProUGUI time_text;
+    float time;
+    bool execute_next_bt;
 
     // Start is called before the first frame update
     void Start()
     {
+        time = 15;
+        cnt_answer = 0;
         bt_set.SetActive(false);
         bt_picture.SetActive(false);
         petctrl_script = GameObject.Find("Scripts_tutorial").GetComponent<Petctrl>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
+        tutorial_random_play_script = GameObject.Find("Scripts_tutorial").GetComponent<tutorial_random_play>();
         //level = player.Level_hungry;
         level = 1;
         time_remain = 0;
@@ -59,6 +69,7 @@ public class Tutorial_Contents1 : MonoBehaviour
         tutorial_panel.SetActive(false);
         tutorial_bt.SetActive(false);
         arrow_3d.SetActive(false);
+        touch_highlight.SetActive(false);
         Invoke("bt_active_true", 6f);
         
     }
@@ -71,6 +82,29 @@ public class Tutorial_Contents1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time_text.text = ((int)(15 - (time % 60))).ToString();
+        if (time < 15f) //게임이 진행중일 때만 시간을 계산하려고 c1_flag &&를 추가했었는데 하면 안 될듯...
+        {
+            time += Time.deltaTime;
+        }
+        else
+        {
+            if (execute_next_bt)
+            {
+                if(cnt_next_bt_clicked == 1 || cnt_next_bt_clicked == 2)
+                {
+                    Debug.Log("logging:\tcnt_next_bt_clicked: " + cnt_next_bt_clicked);
+                    execute_next_bt = false;
+                    hungry_next_bt_clicked();
+                }
+            }
+        }
+
+        if(c1_flag && touch_highlight.activeSelf == true)
+        {
+            touch_highlight.transform.position = Camera.main.WorldToScreenPoint(food_selected[cnt_answer].transform.position);
+        }
+
         //if (time_remain > 0)
         //{
         //    time_remain -= Time.deltaTime;
@@ -193,6 +227,7 @@ public class Tutorial_Contents1 : MonoBehaviour
 
     }
 
+    //버튼을 누르거나, 15초이상 경과하면, 함수를 실행한다.
     public void hungry_next_bt_clicked()
     {
         Debug.Log("cnt_next_bt_clicked: " + cnt_next_bt_clicked);
@@ -205,12 +240,17 @@ public class Tutorial_Contents1 : MonoBehaviour
             tutorial_bt.SetActive(true);
             tutorial_msg.text = "강아지에게 줄 음식을 한번 골라볼까요?";
             cnt_next_bt_clicked++;
+            if (time_text.gameObject.activeSelf != true) time_text.gameObject.SetActive(true);
+            time = 0;
+            execute_next_bt = true;
         }
        else if(cnt_next_bt_clicked == 1)
         {
             tutorial_msg.text = "음식의 순서를 기억해주세요!";
             cnt_next_bt_clicked++;
             hungry_bt_click();
+            time = 0;
+            execute_next_bt = true;
         }
         else if (cnt_next_bt_clicked == 2)
         {
@@ -218,13 +258,18 @@ public class Tutorial_Contents1 : MonoBehaviour
             tutorial_msg.text = "음식을 순서대로 골라볼까요?\n음식을 선택해서 음식을 고를 수 있어요!";
             arrow_3d.SetActive(true);
             tutorial_bt.SetActive(false);
+            touch_highlight.SetActive(true);
             change_to_shuffled();
             cnt_next_bt_clicked++;
+            time_text.gameObject.SetActive(false);
         }
         else if (cnt_next_bt_clicked == 3)
         {
             tutorial_msg.text = "잘 하셨어요! 두 번째 음식도 골라볼까요?";
             arrow_3d.transform.position = food_selected[1].transform.position + 0.1f * Vector3.up;
+            cnt_answer += 1;
+
+
             Debug.Log("shuffled_idx[1]: " + shuffled_idx[1]);
             cnt_next_bt_clicked++;
         }
@@ -232,12 +277,15 @@ public class Tutorial_Contents1 : MonoBehaviour
         {
             tutorial_msg.text = "잘 하셨어요! 마지막 음식도 골라볼까요?";
             arrow_3d.transform.position = food_selected[2].transform.position + 0.1f * Vector3.up;
+            cnt_answer += 1;
             Debug.Log("shuffled_idx[2]: " + shuffled_idx[2]);
             cnt_next_bt_clicked++;
         }
         else if (cnt_next_bt_clicked == 5)
         {
+            cnt_answer = 0;
             arrow_3d.SetActive(false);
+            touch_highlight.SetActive(false);
             tutorial_msg.text = "모두 다 잘 고르셨네요! 다음 게임도 배워볼까요?";
             Invoke("re_init", 10f);
             cnt_next_bt_clicked = 0;
@@ -339,6 +387,8 @@ public class Tutorial_Contents1 : MonoBehaviour
         c1_flag = false;
         cnt_corr = 0;
         clear_text();
+        tutorial_random_play_script.time_remain = tutorial_random_play_script.time_max;
+        tutorial_random_play_script.game_start_flag = true;
 
         for (int i = 0; i < foods.Count; i++)
         {

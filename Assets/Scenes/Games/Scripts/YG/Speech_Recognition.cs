@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using TMPro;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using JetBrains.Annotations;
 
 [RequireComponent (typeof (AudioSource))]
 
@@ -26,6 +27,8 @@ public class Speech_Recognition : MonoBehaviour {
 
     private bool is_speaking; 
     public TextMeshProUGUI user_text; 
+
+    public SendDataEp sendDataEp;
 
 
 
@@ -61,6 +64,7 @@ public class Speech_Recognition : MonoBehaviour {
 
     void SpeakOnClicked(){
         is_speaking=true;
+        user_text.text="대답 후, 멈추기 버튼을 눌러주세요.";
         Recording();
 
     }
@@ -80,14 +84,15 @@ public class Speech_Recognition : MonoBehaviour {
                 }
             }else{
                 if(!is_speaking){
-                    float filenameRand = UnityEngine.Random.Range (0.0f, 10.0f);
+                    float filenameRand = UnityEngine.Random.Range (0, 200);
                     string filename = "testing" + filenameRand;
                     Microphone.End(null); //Stop the audio recording
                     Debug.Log( "Recording Stopped");
+                    string filename_withwav ="";
                     if (!filename.ToLower().EndsWith(".wav")){
-                            filename += ".wav";
+                             filename_withwav = filename+ ".wav";
             		}
-                var filePath = Path.Combine("testing/", filename);
+                string filePath = Path.Combine("testing/", filename_withwav);
                 filePath = Path.Combine(Application.persistentDataPath, filePath);
                 Debug.Log("Created filepath string: " + filePath);
 
@@ -100,11 +105,22 @@ public class Speech_Recognition : MonoBehaviour {
                 string url=$"https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang={lang}";
                 // HttpWebRequest request =(HttpWebRequest)WebRequest.Create(url);
                 string Response;
+                Debug.Log("filename: "+filename+"  path: "+filePath);
+                
+                FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                byte[] fileData = new byte[fs.Length];
+
+                sendDataEp.UpdateWAV(filename, filePath, fileData);
+
                 Response = HttpUploadFile(url, filePath, "file", "audio/wav; rate=44100");
                 Debug.Log(Response);
                 AudioSource speech_audio;
                 speech_audio=goAudioSource.GetComponent<AudioSource>();
                 speech_audio.Play();
+
+                
+                // sendDataEp.Send();
+                
                 // string apiURL = "http://www.google.com/speech-api/v2/recognize?output=json&lang=en-us&key=" + apiKey;
                 // string Response;
                 // Response = HttpUploadFile (apiURL, filePath, "file", "audio/wav; rate=44100");
@@ -128,6 +144,9 @@ public class Speech_Recognition : MonoBehaviour {
 
     public string HttpUploadFile(string url, string file, string paramName, string contentType) {
         string FilePath=file;
+
+        
+
         FileStream fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read);
         byte[] fileData = new byte[fs.Length];
         fs.Read(fileData, 0, fileData.Length);

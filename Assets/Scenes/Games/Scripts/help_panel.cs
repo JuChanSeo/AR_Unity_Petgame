@@ -8,6 +8,7 @@ public class help_panel : MonoBehaviour
 
     public GameObject help_panel_entire;
     public GameObject[] panels;
+    public GameObject explain_panel;
 
     GameObject selected_panel;
     int current_idx;
@@ -56,6 +57,9 @@ public class help_panel : MonoBehaviour
     {
         if (help_panel_entire.activeSelf == true) help_panel_entire.SetActive(false);
         else help_panel_entire.SetActive(true);
+
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel, 10f);
     }
 
     public void hungry_panel_clicked()
@@ -69,6 +73,9 @@ public class help_panel : MonoBehaviour
         }
         selected_panel.SetActive(true);
         selected_panel.transform.GetChild(0).gameObject.SetActive(true);
+
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel);
     }
 
     public void sleep_panel_clicked()
@@ -82,6 +89,10 @@ public class help_panel : MonoBehaviour
         }
         selected_panel.SetActive(true);
         selected_panel.transform.GetChild(0).gameObject.SetActive(true);
+
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel);
+
     }
 
     public void bath_panel_clicked()
@@ -95,6 +106,10 @@ public class help_panel : MonoBehaviour
         }
         selected_panel.SetActive(true);
         selected_panel.transform.GetChild(0).gameObject.SetActive(true);
+
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel);
+
     }
 
     public void play_panel_clicked()
@@ -108,6 +123,10 @@ public class help_panel : MonoBehaviour
         }
         selected_panel.SetActive(true);
         selected_panel.transform.GetChild(0).gameObject.SetActive(true);
+
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel);
+
     }
 
     public void next_bt_clicked()
@@ -121,6 +140,10 @@ public class help_panel : MonoBehaviour
         else current_idx += 1;
 
         selected_panel.transform.GetChild(current_idx).gameObject.SetActive(true);
+
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel);
+
     }
 
     public void previous_bt_clicked()
@@ -134,6 +157,10 @@ public class help_panel : MonoBehaviour
         else current_idx -= 1;
 
         selected_panel.transform.GetChild(current_idx).gameObject.SetActive(true);
+
+        if (explain_panel != null && explain_panel.activeSelf == true)
+            Destroy(explain_panel);
+
     }
 
 }

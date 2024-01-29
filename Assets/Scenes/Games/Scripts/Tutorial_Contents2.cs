@@ -33,20 +33,30 @@ public class Tutorial_Contents2 : MonoBehaviour
     public bool c2_flag;
     bgm_player bgm_player_;
     Player_statu player;
+    drawing_pattern drawing_pattern_script;
+    tutorial_random_play tutorial_random_play_script;
+
     int level;
 
-    int cnt_next_bt_clicked;
+    public int cnt_next_bt_clicked;
     public GameObject tutorial_panel;
     public GameObject tutorial_bt;
     public TMP_Text tutorial_msg;
+    public GameObject drawing_cursor;
+    public TextMeshProUGUI time_text;
+    float time;
+    bool execute_next_bt;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("tutorial2 dot pos:\t" + content2_panel.transform.GetChild(0).position + "\t" + content2_panel.transform.GetChild(4).position
+            + "\t" + content2_panel.transform.GetChild(8).position);
         petctrl_script = GameObject.Find("Scripts_tutorial").GetComponent<Petctrl>();
         bgm_player_ = GameObject.Find("Audio player").GetComponent<bgm_player>();
         player = GameObject.Find("player_statu").GetComponent<Player_statu>();
-
+        drawing_pattern_script = GameObject.Find("Scripts_tutorial").GetComponent<drawing_pattern>();
+        tutorial_random_play_script = GameObject.Find("Scripts_tutorial").GetComponent<tutorial_random_play>();
         list_answer_set = new List<List<string>>{
             new List<string> {"dot1", "dot2", "dot5", "dot7"},//4-1
             new List<string> {"dot2", "dot5", "dot8", "dot7"},//4-2
@@ -55,7 +65,7 @@ public class Tutorial_Contents2 : MonoBehaviour
             new List<string> {"dot1", "dot4", "dot5", "dot9"},//4-5
             new List<string> {"dot3", "dot2", "dot5", "dot8"},//4-6
             new List<string> {"dot1", "dot4", "dot8", "dot9"},//4-7
-            new List<string> {"dot7", "do4t", "dot2", "dot3"},//4-8
+            new List<string> {"dot7", "dot4", "dot2", "dot3"},//4-8
             new List<string> {"dot2", "dot4", "dot8", "dot6"},//4-9
             new List<string> {"dot2", "dot4", "dot8", "dot9"},//4-10
             new List<string> {"dot1", "dot2", "dot3", "dot5", "dot7"},//5-1
@@ -137,6 +147,7 @@ public class Tutorial_Contents2 : MonoBehaviour
         rand_idx = 0;
 
 
+        time = 15;
         level = 1;
         cnt_next_bt_clicked = 0;
         tutorial_panel.SetActive(false);
@@ -146,6 +157,24 @@ public class Tutorial_Contents2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time_text.text = ((int)(15 - (time % 60))).ToString();
+        if (time < 15f) //게임이 진행중일 때만 시간을 계산하려고 c1_flag &&를 추가했었는데 하면 안 될듯...
+        {
+            time += Time.deltaTime;
+        }
+        else
+        {
+            if (execute_next_bt)
+            {
+                if (cnt_next_bt_clicked == 1 || cnt_next_bt_clicked == 2)
+                {
+                    Debug.Log("logging:\tcnt_next_bt_clicked: " + cnt_next_bt_clicked);
+                    execute_next_bt = false;
+                    sleep_next_bt_clicked();
+                }
+            }
+        }
+
         if (!c2_flag) return;
 
         if (Input.touchCount > 0)
@@ -212,23 +241,31 @@ public class Tutorial_Contents2 : MonoBehaviour
             tutorial_msg.text = "강아지를 한번 재워볼까요?";
             tutorial_panel.SetActive(true);
             cnt_next_bt_clicked++;
+            if (time_text.gameObject.activeSelf != true) time_text.gameObject.SetActive(true);
+            time = 0;
+            execute_next_bt = true;
         }
         else if (cnt_next_bt_clicked == 1)
         {
             tutorial_msg.text = "화면에 보이는 패턴을 기억해주세요!";
             sleep_bt_clicked();
             cnt_next_bt_clicked++;
+            time = 0;
+            execute_next_bt = true;
         }
         else if (cnt_next_bt_clicked == 2)
         {
             tutorial_msg.text = "방금 봤던 패턴을 화면에 그려주세요!";
+            drawing_pattern_script.alloc_pattern(rand_idx);
             null_video_screen();
             cnt_next_bt_clicked++;
+            time_text.gameObject.SetActive(false);
         }
         else if (cnt_next_bt_clicked == 3)
         {
             tutorial_bt.SetActive(false);
             tutorial_msg.text = "패턴 그리기에 성공했어요!";
+            drawing_cursor.SetActive(false);
             Invoke("sleep_bt_reset", 10f);
             cnt_next_bt_clicked = 0;
         }
@@ -236,14 +273,8 @@ public class Tutorial_Contents2 : MonoBehaviour
 
     protected IEnumerator Preparevid()
     {
-        //list_video_set[rand_idx].Prepare();
         video.Prepare();
 
-        //while (!list_video_set[rand_idx].isPrepared)
-        //{
-
-        //    yield return new WaitForSeconds(0.5f);
-        //}
 
         while (!video.isPrepared)
         {
@@ -253,9 +284,7 @@ public class Tutorial_Contents2 : MonoBehaviour
 
 
         answer_vid_screen.enabled = true;
-        //answer_vid_screen.texture = list_video_set[rand_idx].texture;
         answer_vid_screen.texture = video.texture;
-        //list_video_set[rand_idx].Play();
         video.Play();
 
 
@@ -273,16 +302,9 @@ public class Tutorial_Contents2 : MonoBehaviour
     {
         if (level == 1)
         {
-            rand_idx = MakeRandomNumbers(0, 20)[0];
+            rand_idx = MakeRandomNumbers(0, 10)[0];
         }
-        else if (level == 2)
-        {
-            rand_idx = MakeRandomNumbers(20, 40)[0];
-        }
-        else if (level == 3)
-        {
-            rand_idx = MakeRandomNumbers(40, 60)[0];
-        }
+
         //rand_idx = MakeRandomNumbers(0, list_video_set.Count)[0];
         current_answer = list_answer_set[rand_idx].ToArray();
         video.url = Application.streamingAssetsPath + "/" + list_video_set[rand_idx];
@@ -335,7 +357,9 @@ public class Tutorial_Contents2 : MonoBehaviour
         bt_picture.SetActive(true);
         bt_set.SetActive(true);
 
-        
+        tutorial_random_play_script.time_remain = tutorial_random_play_script.time_max;
+        tutorial_random_play_script.game_start_flag = true;
+
         cnt_answer = 0;
         answer_vid_screen.texture = null;
         answer_vid_screen.enabled = false;

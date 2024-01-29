@@ -37,7 +37,7 @@ public class ButtonClick : MonoBehaviour
     private bool[] isPressed = new bool[4]; // 각 버튼의 누른 상태를 저장하는 배열
 
     public string answer;
-    public string filePath = "SavedButton.txt";
+    public string filePath = Application.streamingAssetsPath + "/SavedButton.txt";
     public string saveFilePath = "jjjson.json";
 
     public TextAsset textFile;
@@ -311,15 +311,16 @@ public class ButtonClick : MonoBehaviour
     {
         if (selectedAnswers.Count > 0)
         {
-            //// 선택한 답변을 파일에 저장합니다.
-            //foreach (string answer in selectedAnswers)
-            //{
-            //    File.AppendAllText(filePath, answer + " ");
+            // 선택한 답변을 파일에 저장합니다.
+            foreach (string answer in selectedAnswers)
+            {
+                Debug.Log(answer);
+                //File.AppendAllText(filePath, answer + " ");
                 
-            //    // string json = JsonUtility.ToJson(answer, true);
-            //    // File.WriteAllText(saveFilePath, json);
+                // string json = JsonUtility.ToJson(answer, true);
+                // File.WriteAllText(saveFilePath, json);
 
-            //}
+            }
             //File.AppendAllText(filePath, "SceneNumber : " + dataList[currentQuestion].SceneNumber + " QuestionNumber : " + dataList[currentQuestion].QuestionNumber +
             //" Question : " + dataList[currentQuestion].Question + " AudioFileName : " + dataList[currentQuestion].AudioFileName + Environment.NewLine);
 
